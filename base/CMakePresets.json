@@ -1,0 +1,129 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 22,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/linux",
+      "installDir": "${sourceDir}/install/linux",
+      "toolchainFile": "/home/applications/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "Boost_NO_WARN_NEW_VERSIONS": "ON",
+        "QT_DECLARATIVE_DEBUG": "ON",
+        "QT_QML_DEBUG": "ON"
+      },
+      "environment": {}
+    },
+    {
+      "name": "wasm",
+      "displayName": "Wasm Config",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/wasm",
+      "installDir": "${sourceDir}/install/wasm",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_HOST_TRIPLET": "wasm32-emscripten",
+        "VCPKG_TARGET_TRIPLET": "wasm32-emscripten",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_SCAN_FOR_MODULES": "OFF",
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"
+      },
+      "environment": {}
+    },
+    {
+      "name": "macos",
+      "displayName": "macOS Config",
+      "generator": "Xcode",
+      "binaryDir": "${sourceDir}/build/macos",
+      "installDir": "${sourceDir}/install",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "Boost_NO_WARN_NEW_VERSIONS": "ON",
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "14.0"
+      },
+      "environment": {}
+    },
+    {
+      "name": "ios",
+      "displayName": "iOS Config",
+      "generator": "Xcode",
+      "binaryDir": "${sourceDir}/build/ios",
+      "installDir": "${sourceDir}/install/ios",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_HOST_TRIPLET": "arm64-ios",
+        "VCPKG_TARGET_TRIPLET": "arm64-ios",
+        "Boost_NO_WARN_NEW_VERSIONS": "ON",
+        "CMAKE_SYSTEM_NAME": "iOS",
+        "CMAKE_IOS_INSTALL_COMBINED": "YES",
+        "CMAKE_OSX_ARCHITECTURES": "arm64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "14.0",
+        "CMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH": "NO",
+        "CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED": "NO",
+        "CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED": "NO"
+      },
+      "environment": {}
+    },
+    {
+      "name": "windows",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/windows",
+      "toolchainFile": "E:\\Apps\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+      "installDir": "${sourceDir}/install",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "Boost_NO_WARN_NEW_VERSIONS": "ON",
+        "CMAKE_PREFIX_PATH": "F:\\Qt\\6.7.0\\msvc2019_64\\lib\\cmake",
+        "QT_DECLARATIVE_DEBUG": "ON"
+      },
+      "environment": {},
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "clangTidyChecks": "-checks=*, -cppcoreguidelines-*, -modernize-*, -readability-*",
+          "enableMicrosoftCodeAnalysis": true,
+          "enableClangTidyCodeAnalysis": true
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux",
+      "configurePreset": "linux"
+    },
+    {
+      "name": "wasm",
+      "configurePreset": "wasm"
+    },
+    {
+      "name": "macos",
+      "configurePreset": "macos",
+      "jobs": 8
+    },
+    {
+      "name": "ios",
+      "configurePreset": "ios",
+      "jobs": 8
+    },
+    {
+      "name": "windows",
+      "configurePreset": "windows",
+      "jobs": 8
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows",
+      "configurePreset": "windows"
+    }
+  ]
+}
