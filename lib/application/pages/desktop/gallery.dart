@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/application/components/empty.dart';
-import 'package:polaris/models/picture.dart';
-import 'package:polaris/services/picture.dart';
+import 'package:suzaku/application/components/empty.dart';
+import 'package:suzaku/models/picture.dart';
+import 'package:suzaku/services/picture.dart';
 import 'package:split_view/split_view.dart';
 
 import 'album.dart';
@@ -33,7 +33,8 @@ class VSGalleryWidget extends ConsumerWidget {
               viewMode: SplitViewMode.Horizontal,
               isActive: true,
             ),
-            controller: SplitViewController(weights: [0.5, 0.5], limits: [WeightLimit(min: 0.2, max: 0.5)]),
+            controller: SplitViewController(
+                weights: [0.5, 0.5], limits: [WeightLimit(min: 0.2, max: 0.5)]),
             children: [
               _FileListWidget(files),
               Container(
@@ -48,6 +49,7 @@ class VSGalleryWidget extends ConsumerWidget {
 
 class _FileListWidget extends ConsumerWidget {
   final List<PictureModel> files;
+
   const _FileListWidget(this.files, {super.key});
 
   @override
@@ -79,6 +81,7 @@ class _FileListWidget extends ConsumerWidget {
 
 class _PictureTileWidget extends ConsumerWidget {
   final PictureModel picture;
+
   const _PictureTileWidget(this.picture, {super.key});
 
   @override

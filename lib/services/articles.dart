@@ -1,16 +1,10 @@
-
-
-
-import 'package:polaris/models/article.dart';
+import 'package:suzaku/models/article.dart';
 
 class ArticleService {
-
   final List<ArticleModel> _items = List.empty(growable: true);
 
   ArticleService() {
-
-    for(var i = 0; i< 10; i++) {
-
+    for (var i = 0; i < 10; i++) {
       var model = ArticleModel(uid: "pk$i", title: "title$i", body: "body$i");
       _items.add(model);
     }
@@ -29,7 +23,7 @@ class ArticleService {
   }
 
   Future<ArticleModel?> getArticle(String pk) async {
-    for(var i = 0; i < _items.length; i++){
+    for (var i = 0; i < _items.length; i++) {
       var model = _items[i];
       if (model.uid == pk) {
         return model;
@@ -38,5 +32,3 @@ class ArticleService {
     return null;
   }
 }
-
-

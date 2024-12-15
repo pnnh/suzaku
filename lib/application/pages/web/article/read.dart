@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:markdown_widget/markdown_widget.dart';
-import 'package:polaris/application/pages/partial/not_found.dart';
-import 'package:polaris/application/pages/partial/page_loading.dart';
-import 'package:polaris/models/article.dart';
-import 'package:polaris/services/web/articles.dart';
+import 'package:suzaku/application/pages/partial/not_found.dart';
+import 'package:suzaku/application/pages/partial/page_loading.dart';
+import 'package:suzaku/models/article.dart';
+import 'package:suzaku/services/web/articles.dart';
 
 class TocItem {
   String title = "";

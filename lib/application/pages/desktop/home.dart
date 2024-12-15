@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/application/pages/desktop/appbar.dart';
+import 'package:suzaku/application/pages/desktop/appbar.dart';
 
 import 'appbody.dart';
 import 'partials/appbar.dart';
@@ -11,7 +11,6 @@ class DHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return const Scaffold(
       appBar: VSAppBar(),
       body: SafeArea(

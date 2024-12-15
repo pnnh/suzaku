@@ -2,17 +2,16 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
-import 'package:polaris/models/album.dart';
-import 'package:polaris/models/folder.dart';
-import 'package:polaris/models/picture.dart';
-import 'package:polaris/services/folder.dart';
-import 'package:polaris/utils/image.dart';
+import 'package:suzaku/models/album.dart';
+import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/models/picture.dart';
+import 'package:suzaku/services/folder.dart';
+import 'package:suzaku/utils/image.dart';
 
 import '../utils/random.dart';
 import 'database.dart';
 
-Future<List<PictureModel>> selectPictures(
-    VSAlbumModel albumModel) async {
+Future<List<PictureModel>> selectPictures(VSAlbumModel albumModel) async {
   // var sqlText = '''select pk, header, body,
   //   simple_highlight(searches, 3, '[', ']') as highlight
   //   from searches where body match jieba_query('国');''';
@@ -43,7 +42,7 @@ Future<List<PictureModel>> selectPictures(
 bool isImageExt(String extName) {
   var exts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.svg'];
   return exts.contains(extName);
-} 
+}
 
 Future<List<PictureModel>> selectPicturesByFolder(FolderModel folder) async {
   if (folder.pk.isEmpty) return List.empty();

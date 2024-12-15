@@ -14,13 +14,6 @@ class AppConfig {
     }
     return "https://pulsar.huable.xyz/server";
   }
-
-  // static String get fileUrl {
-  //   if (kDebugMode) {
-  //     return "https://$serverHost";
-  //   }
-  //   return "https://$serverHost";
-  // }
 }
 
 class AppHelper {

@@ -1,6 +1,5 @@
-
 import 'package:hive/hive.dart';
-import 'package:polaris/models/task.dart';
+import 'package:suzaku/models/task.dart';
 
 class TaskAdapter extends TypeAdapter<Article> {
   @override
@@ -8,7 +7,10 @@ class TaskAdapter extends TypeAdapter<Article> {
 
   @override
   Article read(BinaryReader reader) {
-    return Article(reader.readString(), reader.readString(), reader.readString(),
+    return Article(
+        reader.readString(),
+        reader.readString(),
+        reader.readString(),
         DateTime.fromMicrosecondsSinceEpoch(reader.readInt()));
   }
 

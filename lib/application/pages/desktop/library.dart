@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/application/components/empty.dart';
-import 'package:polaris/models/library.dart';
+import 'package:suzaku/application/components/empty.dart';
+import 'package:suzaku/models/library.dart';
 
 import 'album.dart';
-
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 final StateProvider<String> activeSelectLibrary = StateProvider((_) => "");
 
 class VSLibraryWidget extends ConsumerWidget {
   final List<VSLibraryModel> libraries;
+
   const VSLibraryWidget(this.libraries, {super.key});
 
   @override
@@ -50,7 +50,9 @@ class VSLibraryWidget extends ConsumerWidget {
                           AssetImage('bundle/images/console/down-arrow.png')),
                 ),
                 onTap: () {
-                  ref.read(activeSelectLibrary.notifier).update((state) => "XXX");
+                  ref
+                      .read(activeSelectLibrary.notifier)
+                      .update((state) => "XXX");
                 },
               )
             ],
@@ -62,7 +64,8 @@ class VSLibraryWidget extends ConsumerWidget {
                 padding: EdgeInsets.zero,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: libraries.map((album) => _ItemWidget(album)).toList(),
+                  children:
+                      libraries.map((album) => _ItemWidget(album)).toList(),
                 )))
       ]),
     );
@@ -71,6 +74,7 @@ class VSLibraryWidget extends ConsumerWidget {
 
 class _ItemWidget extends ConsumerWidget {
   final VSLibraryModel libraryModel;
+
   const _ItemWidget(this.libraryModel);
 
   @override
@@ -87,7 +91,9 @@ class _ItemWidget extends ConsumerWidget {
           child: Text(libraryModel.title),
         ),
         onTap: () {
-          ref.read(activeSelectLibrary.notifier).update((state) => libraryModel.uid);
+          ref
+              .read(activeSelectLibrary.notifier)
+              .update((state) => libraryModel.uid);
         },
       ),
       onEnter: (event) {

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:polaris/models/folder.dart';
-import 'package:polaris/services/folder.dart';
-import 'package:polaris/utils/logger.dart';
+import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/services/folder.dart';
+import 'package:suzaku/utils/logger.dart';
 
 final StateProvider<String> _directoryProvider = StateProvider((_) => "");
 

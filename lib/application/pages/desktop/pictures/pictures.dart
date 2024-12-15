@@ -3,15 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as path;
-import 'package:polaris/models/picture.dart';
-import 'package:polaris/services/folder.dart';
-import 'package:polaris/services/picture.dart';
+import 'package:suzaku/models/picture.dart';
+import 'package:suzaku/services/folder.dart';
+import 'package:suzaku/services/picture.dart';
 
 final StateProvider<String> _gridProvider = StateProvider((_) => "");
 final StateProvider<String> _searchProvider = StateProvider((_) => "");
 
 class PicturesPage extends StatelessWidget {
   final String folderPk;
+
   const PicturesPage({super.key, required this.folderPk});
 
   @override
@@ -29,6 +30,7 @@ class PicturesPage extends StatelessWidget {
 
 class _PicturesBody extends ConsumerStatefulWidget {
   final String folderPk;
+
   const _PicturesBody({required this.folderPk});
 
   @override

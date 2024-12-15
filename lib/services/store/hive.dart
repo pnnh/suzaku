@@ -1,4 +1,4 @@
-import 'package:polaris/models/authorization.dart';
+import 'package:suzaku/models/authorization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveStore {

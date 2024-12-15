@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:polaris/models/album.dart';
-import 'package:polaris/models/directory.dart';
-import 'package:polaris/models/library.dart';
+import 'package:suzaku/models/album.dart';
+import 'package:suzaku/models/directory.dart';
+import 'package:suzaku/models/library.dart';
 
 Future<List<VSDirectoryModel>> selectDirectories(
     VSLibraryModel albumModel) async {

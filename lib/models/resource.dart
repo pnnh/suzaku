@@ -1,6 +1,6 @@
 // import 'dart:convert';
 
-// import 'package:polaris/services/models/picture.dart';
+// import 'package:suzaku/services/models/picture.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'resource.g.dart';
@@ -33,8 +33,8 @@ class ResourceModel {
   String? tags = "";
   String? body = "";
   @JsonKey(ignore: true)
-  dynamic bodyObject; 
-  int status = 0; 
+  dynamic bodyObject;
+  int status = 0;
   String? cover = "";
 
   ResourceModel();
@@ -44,7 +44,6 @@ class ResourceModel {
   }
 
   Map<String, dynamic> toJson() => _$ResourceModelToJson(this);
-
 
   T? getBody<T>() {
     if (bodyObject == null) {

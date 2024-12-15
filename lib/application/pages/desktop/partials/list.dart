@@ -1,7 +1,6 @@
-
-import 'package:polaris/application/pages/partial/page_loading.dart';
-import 'package:polaris/models/article.dart';
-import 'package:polaris/services/articles.dart';
+import 'package:suzaku/application/pages/partial/page_loading.dart';
+import 'package:suzaku/models/article.dart';
+import 'package:suzaku/services/articles.dart';
 
 import 'item.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +38,9 @@ class _TodoListWidget extends State<TodoListWidget> {
       onWeightChanged: (w) => debugPrint("Horizontal $w"),
       children: [
         FutureBuilder<List<ArticleModel>>(
-        future: ArticleService().selectArticles(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<ArticleModel>> snapshot) {
+            future: ArticleService().selectArticles(),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<ArticleModel>> snapshot) {
               if (snapshot.hasError) {
                 return Text("加载出错1 ${snapshot.error}");
               }
@@ -51,47 +50,38 @@ class _TodoListWidget extends State<TodoListWidget> {
               }
               var items = snapshot.data;
               if (items == null) {
-
                 return const Center(
                   child: Text("列表为空"),
                 );
               }
 
-              return  Container(
+              return Container(
                   padding: const EdgeInsets.all(16),
                   decoration: const BoxDecoration(
                       border: Border(
                           right: BorderSide(
-                            color: Color.fromRGBO(229, 229, 229, 100),
-                            width: 1,
-                          ))),
+                    color: Color.fromRGBO(229, 229, 229, 100),
+                    width: 1,
+                  ))),
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
                       Expanded(
                           child: ListView.builder(
-                            itemCount: items.length,
-                            itemBuilder: (context, index) {
-                              if (items.length <= index) {
-                                throw Exception("找不到item");
-                              }
-                              var model = items[index];
-                              return TodoItemWidget(
-                                article: model,
-                              );
-                            },
-                          ))
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          if (items.length <= index) {
+                            throw Exception("找不到item");
+                          }
+                          var model = items[index];
+                          return TodoItemWidget(
+                            article: model,
+                          );
+                        },
+                      ))
                     ],
                   ));
-            }
-            )
-
-
-
-
-
-
-
+            })
       ],
     ));
   }

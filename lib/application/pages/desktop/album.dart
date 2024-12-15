@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/application/components/loading.dart';
-import 'package:polaris/models/album.dart';
-import 'package:polaris/models/library.dart';
-import 'package:polaris/services/album.dart';
+import 'package:suzaku/application/components/loading.dart';
+import 'package:suzaku/models/album.dart';
+import 'package:suzaku/models/library.dart';
+import 'package:suzaku/services/album.dart';
 
 import 'library.dart';
-
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 final StateProvider<VSAlbumModel?> albumModelProvider =
@@ -43,7 +42,9 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
                 child: const Image(
                     image: AssetImage('bundle/images/console/down-arrow.png')),
                 onTap: () {
-                  ref.read(activeSelectLibrary.notifier).update((state) => "XXX");
+                  ref
+                      .read(activeSelectLibrary.notifier)
+                      .update((state) => "XXX");
                 },
               )
             ],
@@ -81,8 +82,7 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
 class _ItemTitleWidget extends ConsumerWidget {
   final VSAlbumModel albumModel;
 
-  const _ItemTitleWidget(
-      this.albumModel,{super.key});
+  const _ItemTitleWidget(this.albumModel, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

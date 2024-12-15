@@ -1,10 +1,10 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:polaris/application/components/arrow.dart';
-// import 'package:polaris/application/components/loading.dart';
-// import 'package:polaris/models/album.dart';
-// import 'package:polaris/models/library.dart';
-// import 'package:polaris/services/album.dart';
+// import 'package:suzaku/application/components/arrow.dart';
+// import 'package:suzaku/application/components/loading.dart';
+// import 'package:suzaku/models/album.dart';
+// import 'package:suzaku/models/library.dart';
+// import 'package:suzaku/services/album.dart';
 //
 // import 'library.dart';
 //

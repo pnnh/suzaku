@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/models/folder.dart';
+import 'package:suzaku/models/folder.dart';
 
-
-final StateProvider<FolderModel> folderProvider = StateProvider((_) => FolderModel("", path: ""));
+final StateProvider<FolderModel> folderProvider =
+    StateProvider((_) => FolderModel("", path: ""));
 
 final StateProvider<String> gridProvider = StateProvider((_) => "");
-
-
 
 final weEmotionProvider =
     StateNotifierProvider<EmotionNotifier, String>((ref) => EmotionNotifier());
@@ -37,12 +35,12 @@ class EmotionPicture {
 class EmotionNotifier extends StateNotifier<String> {
   EmotionNotifier() : super("");
 
-  void select(String key) { 
+  void select(String key) {
     state = key;
   }
 }
 
-Future<List<EmotionPicture>> selectPics(String picPath) async { 
+Future<List<EmotionPicture>> selectPics(String picPath) async {
   if (picPath.trim().isEmpty) {
     return List.empty();
   }
@@ -73,11 +71,11 @@ class GridState {
 class GridNotifier extends StateNotifier<GridState> {
   GridNotifier() : super(GridState("", ""));
 
-  void select(String key) { 
+  void select(String key) {
     state = GridState(key, state.hoverKey);
   }
 
-  void hover(String key) { 
+  void hover(String key) {
     state = GridState(state.selectedKey, key);
   }
 }

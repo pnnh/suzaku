@@ -1,4 +1,4 @@
-import 'package:polaris/services/store/hive.dart';
+import 'package:suzaku/services/store/hive.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 // import 'package:uuid/uuid.dart';

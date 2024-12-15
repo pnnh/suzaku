@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
-import 'package:polaris/application/providers/emotion.dart';
-import 'package:polaris/models/folder.dart';
-import 'package:polaris/services/folder.dart';
+import 'package:suzaku/application/providers/emotion.dart';
+import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/services/folder.dart';
 
 import '../../../utils/random.dart';
 
@@ -45,7 +45,8 @@ class VFoldersWidget extends ConsumerWidget {
                         debugPrint("plus");
                         var folder = await pickFolder();
                         if (folder != null) {
-                          ref.read(directoryProvider.notifier)
+                          ref
+                              .read(directoryProvider.notifier)
                               .update((state) => folder.path);
                         }
                       },
@@ -65,60 +66,54 @@ class VFoldersWidget extends ConsumerWidget {
               ),
               Column(
                   children: List.generate(
-                    dataList.length,
-                        (index) {
-                      var item = dataList[index];
-                      debugPrint("item: ${item.path}");
+                dataList.length,
+                (index) {
+                  var item = dataList[index];
+                  debugPrint("item: ${item.path}");
 
-                      return MouseRegion(
-                          child: Container(
-                            height: 32,
-                            padding: const EdgeInsets.only(left: 16, right: 16),
-                            color: ref
-                                .watch(folderProvider)
-                                .pk == item.pk
-                                ? const Color(0xffD3D3D3)
-                                : Colors.transparent,
-                            child: GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () {
-                                  debugPrint("点击动图");
-                                  ref
-                                      .read(folderProvider.notifier)
-                                      .update((state) => item);
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 0,
-                                              right: 8,
-                                              top: 0,
-                                              bottom: 0),
-                                          child: SvgPicture.asset(
-                                            "bundle/images/icons/folder.svg",
-                                            color: const Color(0xff444444),
-                                            height: 16,
-                                            width: 16,
-                                            //    fit: BoxFit.fitWidth
-                                          ),
-                                        ),
-                                        Text(
-                                          basename(item.path),
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(item.count.toString())
-                                  ],
-                                )),
-                          ));
-                    },
-                  ))
+                  return MouseRegion(
+                      child: Container(
+                    height: 32,
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    color: ref.watch(folderProvider).pk == item.pk
+                        ? const Color(0xffD3D3D3)
+                        : Colors.transparent,
+                    child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          debugPrint("点击动图");
+                          ref
+                              .read(folderProvider.notifier)
+                              .update((state) => item);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 8, top: 0, bottom: 0),
+                                  child: SvgPicture.asset(
+                                    "bundle/images/icons/folder.svg",
+                                    color: const Color(0xff444444),
+                                    height: 16,
+                                    width: 16,
+                                    //    fit: BoxFit.fitWidth
+                                  ),
+                                ),
+                                Text(
+                                  basename(item.path),
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            Text(item.count.toString())
+                          ],
+                        )),
+                  ));
+                },
+              ))
             ],
           );
         });
@@ -131,8 +126,7 @@ class VFoldersWidget extends ConsumerWidget {
       debugPrint("selectedDirectory: $selectedDirectory");
 
       var pk = generateRandomString(16);
-      var newFolder = FolderModel(pk,
-          path: selectedDirectory);
+      var newFolder = FolderModel(pk, path: selectedDirectory);
       await insertFolder(newFolder);
 
       return newFolder;

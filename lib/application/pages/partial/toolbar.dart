@@ -1,5 +1,4 @@
-
-import 'package:polaris/models/authorization.dart';
+import 'package:suzaku/models/authorization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +7,6 @@ class ToolbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

@@ -1,19 +1,21 @@
-import 'package:suzaku/application/route.dart';
+
 import 'package:flutter/material.dart';
 
-class HuableApplication extends StatefulWidget {
-  const HuableApplication({super.key});
+import 'route.dart';
+
+class WebApplication extends StatefulWidget {
+  const WebApplication({super.key});
 
   @override
-  State<HuableApplication> createState() => _HuableApplicationState();
+  State<WebApplication> createState() => _WebApplicationState();
 }
 
-class _HuableApplicationState extends State<HuableApplication> {
+class _WebApplicationState extends State<WebApplication> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Mobile App',
-      routerConfig: globalRouter,
+      routerConfig: webRouter,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: true,
@@ -26,8 +28,4 @@ class _HuableApplicationState extends State<HuableApplication> {
       color: Colors.white,
     );
   }
-}
-
-Future<Widget> initApp() async {
-  return const HuableApplication();
 }

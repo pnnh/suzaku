@@ -3,7 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:polaris/application/pages/desktop/home.dart';
+import 'package:suzaku/application/pages/desktop/home.dart';
 
 import 'pages/desktop/pictures/pictures.dart';
 import 'pages/mobile/home.dart';

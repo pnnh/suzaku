@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polaris/application/components/loading.dart';
-import 'package:polaris/models/library.dart';
-import 'package:polaris/services/library.dart';
+import 'package:suzaku/application/components/loading.dart';
+import 'package:suzaku/models/library.dart';
+import 'package:suzaku/services/library.dart';
 
 import 'gallery.dart';
 import 'library.dart';
@@ -24,13 +24,11 @@ class VSAppBodyWidget extends ConsumerWidget {
           ref.watch(activeSecondbar)
               ? const _SecondNavbarWidget()
               : const SizedBox(width: 0),
-              Expanded(
-                child: Container(
+          Expanded(
+              child: Container(
                   height: double.infinity,
                   padding: EdgeInsets.all(8),
-                  child: VSGalleryWidget()
-                )
-              ),
+                  child: VSGalleryWidget())),
         ],
       ),
     );

@@ -1,11 +1,9 @@
-
 import 'package:file_picker/file_picker.dart';
-import 'package:polaris/models/folder.dart';
-import 'package:polaris/utils/logger.dart';
+import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/utils/logger.dart';
 
 import '../utils/random.dart';
 import 'database.dart';
-
 
 class Folders {
   static Future<FolderModel?> pickFolder() async {
@@ -13,10 +11,9 @@ class Folders {
 
     if (selectedDirectory != null) {
       logger.d("selectedDirectory: $selectedDirectory");
- 
+
       var pk = generateRandomString(16);
-      var newFolder = FolderModel(pk,
-          path: selectedDirectory);
+      var newFolder = FolderModel(pk, path: selectedDirectory);
       await insertFolder(newFolder);
 
       return newFolder;
