@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:suzaku/models/article.dart';
-import 'package:suzaku/models/home.dart';
-import 'package:suzaku/services/home.dart';
-import 'package:suzaku/utils/screen.dart';
+import 'package:suzaku/application/pages/common/size.dart';
+import 'package:suzaku/application/pages/web/source.dart';
+import 'package:suzaku/application/pages/web/svgeditor.dart';
+import 'package:suzaku/application/pages/web/svgviewer.dart';
 
+import 'action.dart';
 import 'appbar.dart';
+import 'export.dart';
 
 class WHomePage extends ConsumerWidget {
   const WHomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
+    return Scaffold(
       appBar: WAppBarPartial(),
       body: SafeArea(
         child: WAppBodyPartial(),
@@ -28,67 +29,27 @@ class WAppBodyPartial extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-        width: double.infinity,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Expanded(
-              child: Container(
-                  color: const Color(0xFFFFFFFF),
-                  width: LayoutHelper.mainContainerWidth(context),
-                  child: FutureBuilder(
-                    future: queryHome(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<HomeResult> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text("加载出错 ${snapshot.error}");
-                      }
-
-                      if (!snapshot.hasData ||
-                          snapshot.data == null ||
-                          snapshot.data?.range == null) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      var articles = snapshot.data!.range;
-                      return ListView.builder(
-                        itemCount: articles.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var article = articles[index];
-                          return WHomeItemPartial(article);
-                        },
-                      );
-                    },
-                  )))
-        ]));
-  }
-}
-
-class WHomeItemPartial extends ConsumerWidget {
-  final ArticleModel model;
-
-  const WHomeItemPartial(this.model, {super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(0),
+      width: double.infinity,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GestureDetector(
-            onTap: () {
-              context.go('/article/${model.uid}');
-            },
-            child: Text(model.title,
-                style: const TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff333333))),
+          WFromSourcePartial(),
+          SizedBox(
+            height: STAppTheme.rootFontSize,
           ),
-          const SizedBox(height: 8),
-          Text(model.description ?? "无描述",
-              style: const TextStyle(fontSize: 14, color: Color(0xff979797))),
+          WSvgEditorPartial(),
+          SizedBox(
+            height: STAppTheme.rootFontSize,
+          ),
+          WSvgViewerPartial(),
+          SizedBox(
+            height: STAppTheme.rootFontSize,
+          ),
+          WSvgActionPartial(),
+          SizedBox(
+            height: STAppTheme.rootFontSize,
+          ),
+          WSvgExportPartial()
         ],
       ),
     );
