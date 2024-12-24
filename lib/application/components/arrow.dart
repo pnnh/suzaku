@@ -10,7 +10,7 @@ class VSArrowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var iconWidget =
-        const Image(image: AssetImage('bundle/images/console/down-arrow.png'));
+        const Image(image: AssetImage('static/images/console/down-arrow.png'));
     if (this.transform == 0) return iconWidget;
 
     return Transform.rotate(

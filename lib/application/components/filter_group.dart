@@ -41,7 +41,7 @@ class _FilterGroupWidget extends State<FilterGroupWidget> {
                             padding: const EdgeInsets.all(8),
                             child: Row(children: [
                               SvgPicture.asset(
-                                "bundle/images/icons/wallet.svg",
+                                "static/images/icons/wallet.svg",
                                 color: iconColor,
                               ),
                               const SizedBox(width: 8),
@@ -83,7 +83,7 @@ class _FilterGroupWidget extends State<FilterGroupWidget> {
                             padding: const EdgeInsets.all(8),
                             child: Row(children: [
                               SvgPicture.asset(
-                                "bundle/images/icons/bill.svg",
+                                "static/images/icons/bill.svg",
                                 color: iconColor,
                               ),
                               const SizedBox(width: 8),
@@ -125,7 +125,7 @@ class _FilterGroupWidget extends State<FilterGroupWidget> {
                             padding: const EdgeInsets.all(8),
                             child: Row(children: [
                               SvgPicture.asset(
-                                "bundle/images/icons/sun.svg",
+                                "static/images/icons/sun.svg",
                                 color: iconColor,
                               ),
                               const SizedBox(width: 8),
@@ -167,7 +167,7 @@ class _FilterGroupWidget extends State<FilterGroupWidget> {
                             padding: const EdgeInsets.all(8),
                             child: Row(children: [
                               SvgPicture.asset(
-                                "bundle/images/icons/archive_drawer.svg",
+                                "static/images/icons/archive_drawer.svg",
                                 color: iconColor,
                               ),
                               const SizedBox(width: 8),
@@ -209,7 +209,7 @@ class _FilterGroupWidget extends State<FilterGroupWidget> {
                             padding: const EdgeInsets.all(8),
                             child: Row(children: [
                               SvgPicture.asset(
-                                "bundle/images/icons/stack.svg",
+                                "static/images/icons/stack.svg",
                                 color: iconColor,
                               ),
                               const SizedBox(width: 8),

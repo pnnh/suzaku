@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,13 +8,14 @@ class NImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var imageFile = File(imagePath);
     if (imageFile.existsSync()) {
-      return Image.file(imageFile ,
-        fit: BoxFit.fill, );
+      return Image.file(
+        imageFile,
+        fit: BoxFit.fill,
+      );
     }
 
-    return Image.asset("bundle/images/avatar.jpeg");
+    return Image.asset("static/images/avatar.jpeg");
   }
 }

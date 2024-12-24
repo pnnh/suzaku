@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -27,59 +26,59 @@ class _ShareReceivePageState extends ConsumerWidget {
       // ),
       body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Expanded(child:
-
-                GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
                     //itemCount: receivedList.length,
                     itemBuilder: (BuildContext context, int index) {
-
                       // var filePath = receivedList[index].value;
                       return buildImageCard(context, "");
-                    }
-                )),
-                const SizedBox(height: 16,),
-                Center(
-                    child: Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            //await savePictures(receivedList);
-                            context.pop();
-                          },
-                          child: const Text("导入"),
-                        ),
-                        const SizedBox(width: 8,),
-                        ElevatedButton(
-                          onPressed: () async {
-                            context.pop();
-                            //exit(0);
-                            //await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                            // if (Platform.isIOS) {
-                            //   exit(0);
-                            // } else {
-                            //   SystemNavigator.pop();
-                            // }
-                          },
-                          child: const Text("取消"),
-                        ),
-                      ],
-                    )
-                ),
-                Center(
-                  child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 24),
-                      child: const Text('Sharing data')),
-                )
-              ],
+                    })),
+            const SizedBox(
+              height: 16,
             ),
-          )
-      ),
+            Center(
+                child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    //await savePictures(receivedList);
+                    context.pop();
+                  },
+                  child: const Text("导入"),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    context.pop();
+                    //exit(0);
+                    //await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                    // if (Platform.isIOS) {
+                    //   exit(0);
+                    // } else {
+                    //   SystemNavigator.pop();
+                    // }
+                  },
+                  child: const Text("取消"),
+                ),
+              ],
+            )),
+            Center(
+              child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
+                  child: const Text('Sharing data')),
+            )
+          ],
+        ),
+      )),
     );
   }
 }
@@ -87,12 +86,14 @@ class _ShareReceivePageState extends ConsumerWidget {
 Widget buildImageCard(BuildContext context, String? filePath) {
   Widget imageWidget;
   if (filePath == null) {
-    imageWidget = Image.asset('bundle/images/brand.png');
+    imageWidget = Image.asset('static/images/brand.png');
   } else {
-
-  var file = File(filePath);
-  imageWidget = Image.file(file, fit: BoxFit.cover,);
-}
+    var file = File(filePath);
+    imageWidget = Image.file(
+      file,
+      fit: BoxFit.cover,
+    );
+  }
   return Container(
     margin: const EdgeInsets.all(16),
     decoration: BoxDecoration(
@@ -101,7 +102,8 @@ Widget buildImageCard(BuildContext context, String? filePath) {
       ),
       color: Theme.of(context).cardColor,
     ),
-    child: ClipRRect(//是ClipRRect，不是ClipRect
+    child: ClipRRect(
+      //是ClipRRect，不是ClipRect
       borderRadius: BorderRadius.circular(8),
       child: imageWidget,
     ),
@@ -130,5 +132,4 @@ Future savePictures(List<String> receivedList) async {
     var fullPath = join(imagePath, fileName);
     file.copy(fullPath);
   }
-
 }

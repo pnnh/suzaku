@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:suzaku/application/pages/partial/toolbar.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({super.key});
@@ -34,7 +33,6 @@ class HeaderWidget extends StatelessWidget {
                         ],
                       )),
                 ]),
-                const ToolbarWidget()
               ],
             )));
   }

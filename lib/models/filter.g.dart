@@ -11,7 +11,7 @@ PictureFilter _$PictureFilterFromJson(Map<String, dynamic> json) =>
       json['pk'] as String,
       title: json['title'] as String? ?? "",
       count: json['count'] as int? ?? 0,
-      icon: json['icon'] as String? ?? "bundle/images/icons/folder.svg",
+      icon: json['icon'] as String? ?? "static/images/icons/folder.svg",
     );
 
 Map<String, dynamic> _$PictureFilterToJson(PictureFilter instance) =>

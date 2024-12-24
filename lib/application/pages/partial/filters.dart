@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,8 +25,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "bigimg" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "bigimg"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -45,7 +45,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/bigimg.svg",
+                            "static/images/icons/bigimg.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -65,8 +65,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "jietu" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "jietu"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -84,7 +85,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/jietu.svg",
+                            "static/images/icons/jietu.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -104,8 +105,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "renwu" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "renwu"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -123,7 +125,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/renwu.svg",
+                            "static/images/icons/renwu.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -143,8 +145,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "dongwu" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "dongwu"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -162,7 +165,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/dongwu.svg",
+                            "static/images/icons/dongwu.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -182,8 +185,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "wenzi" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "wenzi"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -201,7 +205,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/wenzi.svg",
+                            "static/images/icons/wenzi.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -221,8 +225,9 @@ class VFiltersWidget extends ConsumerWidget {
       Container(
         height: 32,
         padding: const EdgeInsets.only(left: 16, right: 16),
-        color:
-            selectedKey == "chongfu" ? const Color(0xffD3D3D3) : Colors.transparent,
+        color: selectedKey == "chongfu"
+            ? const Color(0xffD3D3D3)
+            : Colors.transparent,
         child: MouseRegion(
             onEnter: (event) {
               // setState(() {
@@ -240,7 +245,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/chongfu.svg",
+                            "static/images/icons/chongfu.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,
@@ -280,7 +285,7 @@ class VFiltersWidget extends ConsumerWidget {
                       child: GestureDetector(
                           onTap: () {},
                           child: SvgPicture.asset(
-                            "bundle/images/icons/lajitong.svg",
+                            "static/images/icons/lajitong.svg",
                             color: const Color(0xff444444),
                             height: 16,
                             width: 16,

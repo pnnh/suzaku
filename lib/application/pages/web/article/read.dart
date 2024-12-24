@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:markdown_widget/markdown_widget.dart';
-import 'package:suzaku/application/pages/partial/not_found.dart';
-import 'package:suzaku/application/pages/partial/page_loading.dart';
+import 'package:suzaku/application/components/not_found.dart';
+import 'package:suzaku/application/components/page_loading.dart';
 import 'package:suzaku/models/article.dart';
 import 'package:suzaku/services/web/articles.dart';
 

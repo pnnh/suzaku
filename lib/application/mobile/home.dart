@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
-
 class MHomePage extends ConsumerStatefulWidget {
   const MHomePage({super.key});
 
@@ -17,9 +16,12 @@ class HomePageState extends ConsumerState<MHomePage> {
 
   //List<SharedFile>? list;
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[HomeBody(), Center(
-    child: Text("Hello"),
-  )];
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomeBody(),
+    Center(
+      child: Text("Hello"),
+    )
+  ];
 
   @override
   void initState() {
@@ -88,7 +90,7 @@ class HomeBody extends StatelessWidget {
 Widget buildImageCard(BuildContext context, String? filePath) {
   Widget imageWidget;
   if (filePath == null) {
-    imageWidget = Image.asset('bundle/images/brand.png');
+    imageWidget = Image.asset('static/images/brand.png');
   } else {
     var file = File(filePath);
     imageWidget = Image.file(

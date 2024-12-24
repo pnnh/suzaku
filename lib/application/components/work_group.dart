@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +22,7 @@ class _WorkGroupWidget extends State<WorkGroupWidget> {
       const SizedBox(height: 24),
       IconButton(
           icon: SvgPicture.asset(
-            "bundle/images/icons/todo.svg",
+            "static/images/icons/todo.svg",
             color: defaultColor,
           ),
           iconSize: 24,
@@ -33,7 +32,7 @@ class _WorkGroupWidget extends State<WorkGroupWidget> {
       const SizedBox(height: 24),
       IconButton(
           icon: SvgPicture.asset(
-            "bundle/images/icons/booklet.svg",
+            "static/images/icons/booklet.svg",
             color: defaultColor,
           ),
           iconSize: 24,
@@ -43,7 +42,7 @@ class _WorkGroupWidget extends State<WorkGroupWidget> {
       const SizedBox(height: 24),
       IconButton(
           icon: SvgPicture.asset(
-            "bundle/images/icons/todo.svg",
+            "static/images/icons/todo.svg",
             color: defaultColor,
           ),
           iconSize: 24,

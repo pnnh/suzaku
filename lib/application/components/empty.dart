@@ -14,7 +14,7 @@ class _EmptyWidget extends State<VSEmptyWidget> {
   Widget build(BuildContext context) {
     return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Image(image: AssetImage('bundle/images/placeholder/empty.png')),
+      const Image(image: AssetImage('static/images/placeholder/empty.png')),
       Text(
         widget.message,
         style: const TextStyle(

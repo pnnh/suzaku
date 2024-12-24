@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
-import 'package:suzaku/application/pages/desktop/folders.dart';
-import 'package:suzaku/application/pages/common/tools.dart';
+import 'package:suzaku/application/desktop/pages/files/folders.dart';
 import 'package:suzaku/models/picture.dart';
 import 'package:suzaku/services/image/image.dart';
 import 'package:suzaku/services/picture.dart';
@@ -26,7 +25,6 @@ class HomePageState extends ConsumerState<MHomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeBody(),
     FoldersBody(),
-    ToolsBody()
   ];
 
   @override
@@ -165,7 +163,7 @@ class HomeBody extends StatelessWidget {
 Widget buildImageCard(BuildContext context, String? filePath) {
   Widget imageWidget;
   if (filePath == null) {
-    imageWidget = Image.asset('bundle/images/brand.png');
+    imageWidget = Image.asset('static/images/brand.png');
   } else {
     var file = File(filePath);
     imageWidget = Image.file(

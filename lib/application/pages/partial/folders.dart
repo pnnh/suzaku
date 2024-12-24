@@ -51,7 +51,7 @@ class VFoldersWidget extends ConsumerWidget {
                         }
                       },
                       child: SvgPicture.asset(
-                        "bundle/images/icons/plus.svg",
+                        "static/images/icons/plus.svg",
                         color: const Color(0xffCDCDCD),
                         height: 16,
                         width: 16,
@@ -95,7 +95,7 @@ class VFoldersWidget extends ConsumerWidget {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 8, top: 0, bottom: 0),
                                   child: SvgPicture.asset(
-                                    "bundle/images/icons/folder.svg",
+                                    "static/images/icons/folder.svg",
                                     color: const Color(0xff444444),
                                     height: 16,
                                     width: 16,

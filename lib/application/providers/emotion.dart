@@ -6,15 +6,6 @@ import 'package:suzaku/models/folder.dart';
 final StateProvider<FolderModel> folderProvider =
     StateProvider((_) => FolderModel("", path: ""));
 
-final StateProvider<String> gridProvider = StateProvider((_) => "");
-
-final weEmotionProvider =
-    StateNotifierProvider<EmotionNotifier, String>((ref) => EmotionNotifier());
-
-final wpEmotionHoverProvider = StateNotifierProvider((ref) {
-  return Hover();
-});
-
 class Hover extends StateNotifier<String> {
   Hover() : super("");
 
@@ -22,9 +13,6 @@ class Hover extends StateNotifier<String> {
     state = key;
   }
 }
-
-final wpGridProvider =
-    StateNotifierProvider<GridNotifier, GridState>((ref) => GridNotifier());
 
 class EmotionPicture {
   String path = "";
