@@ -4,14 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzaku/application/desktop/components/navbar.dart';
 import 'package:suzaku/utils/random.dart';
 
-class DPasswordPage extends ConsumerStatefulWidget {
-  const DPasswordPage({super.key});
+class WUUIDPage extends ConsumerStatefulWidget {
+  const WUUIDPage({super.key});
 
   @override
-  ConsumerState<DPasswordPage> createState() => _DPasswordPageState();
+  ConsumerState<WUUIDPage> createState() => _DPasswordPageState();
 }
 
-class _DPasswordPageState extends ConsumerState<DPasswordPage> {
+class _DPasswordPageState extends ConsumerState<WUUIDPage> {
   final int _length = 12;
   final _myController = TextEditingController(text: "12");
   String _randomString = "xxx";

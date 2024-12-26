@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'route.dart';
@@ -14,7 +13,7 @@ class _MobileApplicationState extends State<MobileApplication> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Mobile App',
+      title: '希波万象',
       routerConfig: mobileRouter,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

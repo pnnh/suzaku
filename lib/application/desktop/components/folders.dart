@@ -6,8 +6,7 @@ import 'package:path/path.dart';
 import 'package:suzaku/application/providers/emotion.dart';
 import 'package:suzaku/models/folder.dart';
 import 'package:suzaku/services/folder.dart';
-
-import '../../../utils/random.dart';
+import 'package:suzaku/utils/random.dart';
 
 final StateProvider<String> directoryProvider = StateProvider((_) => "");
 

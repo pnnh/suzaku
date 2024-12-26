@@ -1,9 +1,9 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:suzaku/application/pages/web/theme.dart';
+import 'package:suzaku/application/web/theme.dart';
 
-import '../common/size.dart';
+import '../../layout/size.dart';
 
 class WSvgActionPartial extends ConsumerWidget {
   const WSvgActionPartial({super.key});

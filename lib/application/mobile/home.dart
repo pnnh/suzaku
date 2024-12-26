@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
+import 'package:suzaku/application/desktop/pages/files/folders.dart';
+import 'package:suzaku/models/picture.dart';
+import 'package:suzaku/services/image/image.dart';
+import 'package:suzaku/services/picture.dart';
+import 'package:suzaku/utils/logger.dart';
+
 class MHomePage extends ConsumerStatefulWidget {
   const MHomePage({super.key});
 
@@ -18,14 +24,39 @@ class HomePageState extends ConsumerState<MHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomeBody(),
-    Center(
-      child: Text("Hello"),
-    )
+    FoldersBody(),
   ];
 
   @override
   void initState() {
     super.initState();
+    // _intentDataStreamSubscription = FlutterSharingIntent.instance.getMediaStream()
+    //     .listen((List<SharedFile> value) {
+    //
+    //   ref.read(shareReceiveProvider.notifier)
+    //       .update((state) => value);
+    //
+    //   if (value.isNotEmpty) {
+    //     logger.d("有分享的文件");
+    //     context.go("/receive");
+    //   }
+    //   print("Shared: getMediaStream ${value.map((f) => f.value).join(",")}");
+    // }, onError: (err) {
+    //   print("getIntentDataStream error: $err");
+    // });
+
+    // For sharing images coming from outside the app while the app is closed
+    // FlutterSharingIntent.instance.getInitialSharing().then((List<SharedFile> value) {
+    //   print("Shared: getInitialMedia ${value.map((f) => f.value).join(",")}");
+    //
+    //   ref.read(shareReceiveProvider.notifier)
+    //       .update((state) => value);
+    //
+    //   if (value.isNotEmpty) {
+    //     logger.d("有分享的文件");
+    //     context.go("/receive");
+    //   }
+    // });
   }
 
   @override
@@ -66,6 +97,7 @@ class HomePageState extends ConsumerState<MHomePage> {
   }
 
   void _onItemTapped(int index) {
+    logger.d("点击了底部导航栏 $index");
     setState(() {
       _selectedIndex = index;
     });
@@ -79,9 +111,50 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          color: Theme.of(context).secondaryHeaderColor,
+          child: Row(
+            children: [
+              TextButton(
+                onPressed: () async {
+                  debugPrint("点击导入图片");
+                  await requestPermission();
+                  await pickImage();
+                },
+                child: const Text("导入图片"),
+              )
+            ],
+          ),
+        ),
         const SizedBox(
           height: 16,
-        )
+        ),
+        Expanded(
+            child: FutureBuilder(
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var imageList = snapshot.data as List<PictureModel>;
+                    return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: imageList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var fileInfo = imageList[index];
+                          return buildImageCard(context, fileInfo.path);
+                        });
+
+                    return const Center(
+                      child: Text("已获取到权限"),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+                future: selectImages()))
       ],
     );
   }

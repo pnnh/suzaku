@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:suzaku/application/pages/web/theme.dart';
+import 'package:suzaku/application/web/theme.dart';
 
 class WSvgExportPartial extends ConsumerWidget {
   const WSvgExportPartial({super.key});

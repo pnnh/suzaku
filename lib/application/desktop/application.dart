@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'route.dart';
@@ -15,21 +14,20 @@ class _DesktopApplicationState extends State<DesktopApplication> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Mobile App',
+      title: '希波万象',
       routerConfig: desktopRouter,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.from(colorScheme: ColorScheme.light()).copyWith(
         primaryColor: YTWebTheme.primaryColor,
         scaffoldBackgroundColor: Colors.white,
         iconTheme: const IconThemeData(size: 24),
-        textButtonTheme:
-        TextButtonThemeData(style: YTWebTheme.flatButtonStyle),
+        textButtonTheme: TextButtonThemeData(style: YTWebTheme.flatButtonStyle),
         elevatedButtonTheme:
-        ElevatedButtonThemeData(style: YTWebTheme.raisedButtonStyle),
+            ElevatedButtonThemeData(style: YTWebTheme.raisedButtonStyle),
         filledButtonTheme:
-        FilledButtonThemeData(style: YTWebTheme.filledButtonStyle),
+            FilledButtonThemeData(style: YTWebTheme.filledButtonStyle),
         outlinedButtonTheme:
-        OutlinedButtonThemeData(style: YTWebTheme.outlineButtonStyle),
+            OutlinedButtonThemeData(style: YTWebTheme.outlineButtonStyle),
       ),
       darkTheme: ThemeData(
           useMaterial3: true,

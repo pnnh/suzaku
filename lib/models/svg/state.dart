@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
-import 'painter.dart';
+import '../../services/common/svg/painter.dart';
 
 part 'state.freezed.dart';
 
