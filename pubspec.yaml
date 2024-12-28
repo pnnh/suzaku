@@ -50,7 +50,7 @@ dependencies:
   path_provider: ^2.1.5
   assorted_layout_widgets: ^10.0.4
   quantum:
-    path: ../quantum
+    path: plugins/quantum
 
 dev_dependencies:
   flutter_lints:

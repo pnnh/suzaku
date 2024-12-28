@@ -792,7 +792,7 @@ packages:
   quantum:
     dependency: "direct main"
     description:
-      path: "../quantum"
+      path: "plugins/quantum"
       relative: true
     source: path
     version: "0.0.1"

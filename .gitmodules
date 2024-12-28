@@ -1,0 +1,4 @@
+[submodule "plugins/quantum"]
+	path = plugins/quantum
+	url = git@github.com:pnnh/quantum.git
+	branch = main
