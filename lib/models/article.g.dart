@@ -19,7 +19,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
       ..updateTime = json['update_time'] == null
           ? null
           : DateTime.parse(json['update_time'] as String)
-      ..created = json['created'] as int?
+      ..created = (json['created'] as num?)?.toInt()
       ..cover = json['cover'] as String?
       ..keywordsList = (json['keywords_list'] as List<dynamic>?)
           ?.map((e) => e as String)

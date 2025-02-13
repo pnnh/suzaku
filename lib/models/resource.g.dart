@@ -18,7 +18,7 @@ ResourceModel _$ResourceModelFromJson(Map<String, dynamic> json) =>
       ..path = json['path'] as String?
       ..tags = json['tags'] as String?
       ..body = json['body'] as String?
-      ..status = json['status'] as int
+      ..status = (json['status'] as num).toInt()
       ..cover = json['cover'] as String?;
 
 Map<String, dynamic> _$ResourceModelToJson(ResourceModel instance) =>
@@ -43,7 +43,7 @@ ResourceModelQueryResult _$ResourceModelQueryResultFromJson(
       ..list = (json['list'] as List<dynamic>)
           .map((e) => ResourceModel.fromJson(e as Map<String, dynamic>))
           .toList()
-      ..count = json['count'] as int;
+      ..count = (json['count'] as num).toInt();
 
 Map<String, dynamic> _$ResourceModelQueryResultToJson(
         ResourceModelQueryResult instance) =>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzaku/application/components/empty.dart';
-import 'package:suzaku/models/library.dart';
+import 'package:suzaku/models/file.dart';
 
 import '../images/album.dart';
 
@@ -9,7 +9,7 @@ final StateProvider<String> _activeItem = StateProvider((_) => "");
 final StateProvider<String> activeSelectLibrary = StateProvider((_) => "");
 
 class VSLibraryWidget extends ConsumerWidget {
-  final List<VSLibraryModel> libraries;
+  final List<SKFileModel> libraries;
 
   const VSLibraryWidget(this.libraries, {super.key});
 
@@ -73,7 +73,7 @@ class VSLibraryWidget extends ConsumerWidget {
 }
 
 class _ItemWidget extends ConsumerWidget {
-  final VSLibraryModel libraryModel;
+  final SKFileModel libraryModel;
 
   const _ItemWidget(this.libraryModel);
 
@@ -88,7 +88,7 @@ class _ItemWidget extends ConsumerWidget {
           color: ref.watch(_activeItem) == libraryModel.uid
               ? const Color(0xFFF2F2F2)
               : Colors.transparent,
-          child: Text(libraryModel.title),
+          child: Text(libraryModel.name),
         ),
         onTap: () {
           ref

@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 
 import '../../services/common/svg/painter.dart';
 
-part 'state.freezed.dart';
-
 part 'state.g.dart';
+
+part 'state.freezed.dart';
 
 @freezed
 class SvgModel with _$SvgModel {

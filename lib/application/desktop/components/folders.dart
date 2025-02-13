@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
 import 'package:suzaku/application/providers/emotion.dart';
-import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/models/file.dart';
+
 import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/utils/random.dart';
 
@@ -15,17 +16,17 @@ class VFoldersWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<FolderModel>>(
-        future: queryFolders(ref.watch(directoryProvider)),
+    return FutureBuilder<List<SKFileModel>>(
+        future: queryLocations(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          List<FolderModel> dataList = List.empty();
+          List<SKFileModel> dataList = List.empty();
           if (snapshot.error != null) {
             return const Center(
               child: Text("加载Folders出错"),
             );
           }
           if (snapshot.hasData) {
-            dataList = snapshot.data as List<FolderModel>;
+            dataList = snapshot.data as List<SKFileModel>;
           }
           return Column(
             children: [
@@ -74,7 +75,7 @@ class VFoldersWidget extends ConsumerWidget {
                       child: Container(
                     height: 32,
                     padding: const EdgeInsets.only(left: 16, right: 16),
-                    color: ref.watch(folderProvider).pk == item.pk
+                    color: ref.watch(folderProvider).uid == item.uid
                         ? const Color(0xffD3D3D3)
                         : Colors.transparent,
                     child: GestureDetector(
@@ -118,14 +119,14 @@ class VFoldersWidget extends ConsumerWidget {
         });
   }
 
-  Future<FolderModel?> pickFolder() async {
+  Future<SKFileModel?> pickFolder() async {
     String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
 
     if (selectedDirectory != null) {
       debugPrint("selectedDirectory: $selectedDirectory");
 
       var pk = generateRandomString(16);
-      var newFolder = FolderModel(pk, path: selectedDirectory);
+      var newFolder = SKFileModel(pk, path: selectedDirectory);
       await insertFolder(newFolder);
 
       return newFolder;

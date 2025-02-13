@@ -10,7 +10,7 @@ PictureFilter _$PictureFilterFromJson(Map<String, dynamic> json) =>
     PictureFilter(
       json['pk'] as String,
       title: json['title'] as String? ?? "",
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       icon: json['icon'] as String? ?? "static/images/icons/folder.svg",
     );
 

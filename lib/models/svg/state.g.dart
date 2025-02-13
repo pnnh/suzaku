@@ -19,6 +19,8 @@ final helloWorldProvider = AutoDisposeProvider<String>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef HelloWorldRef = AutoDisposeProviderRef<String>;
 String _$svgModelStateHash() => r'b049933d21c771f28e60df7fd935b88927951736';
 
@@ -37,4 +39,4 @@ final svgModelStateProvider =
 
 typedef _$SvgModelState = AutoDisposeAsyncNotifier<SvgModel>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

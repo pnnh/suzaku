@@ -11,7 +11,7 @@ HomeResult _$HomeResultFromJson(Map<String, dynamic> json) => HomeResult(
               ?.map((e) => ArticleModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$HomeResultToJson(HomeResult instance) =>

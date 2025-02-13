@@ -24,7 +24,7 @@ class DNavbarComponent extends ConsumerWidget {
                 const EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 16),
             child: GestureDetector(
               onTap: () {
-                context.go("/");
+                context.go("/tools");
               },
               child: Image(
                 image: AssetImage('static/images/common/global.png'),

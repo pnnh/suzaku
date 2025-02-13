@@ -8,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:suzaku/models/tool.dart';
 import 'package:suzaku/services/tools/tools.dart';
 
-class DHomePage extends ConsumerWidget {
-  const DHomePage({super.key});
+class DToolsPage extends ConsumerWidget {
+  const DToolsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

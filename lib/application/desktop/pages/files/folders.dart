@@ -3,15 +3,16 @@ import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/models/file.dart';
+
 import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/utils/logger.dart';
 
-final StateProvider<String> _directoryProvider = StateProvider((_) => "");
+final StateProvider<SKFileModel?> glLocationProvider =
+    StateProvider((_) => null);
 
-class FoldersBody extends StatelessWidget {
-  const FoldersBody({super.key});
+class DFoldersBody extends StatelessWidget {
+  const DFoldersBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +31,13 @@ class _FoldersBodyState extends ConsumerWidget {
         logger.d("screenSize $screenSize");
 
         return ConstrainedBox(
-          constraints:
-              BoxConstraints.tightFor(height: max(512, constraints.maxHeight)),
+          constraints: BoxConstraints.tightFor(
+              height: max(512, constraints.maxHeight), width: 256),
           child: Container(
               color: Colors.white,
               child: Column(
                 children: [
                   const _MFoldersPartial(),
-                  Center(
-                    child: TextButton(
-                      onPressed: () async {
-                        debugPrint("点击按钮");
-
-                        var folder = await Folders.pickFolder();
-                        if (folder != null) {
-                          debugPrint("选择了文件夹: ${folder.path}");
-                          ref
-                              .read(_directoryProvider.notifier)
-                              .update((state) => folder.path);
-                        } else {
-                          debugPrint("什么都没有选择");
-                        }
-                      },
-                      child: const Text("点击"),
-                    ),
-                  )
                 ],
               )), // your column
         );
@@ -68,15 +51,15 @@ class _MFoldersPartial extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<FolderModel>>(
-        future: queryFolders(ref.watch(_directoryProvider)),
+    return FutureBuilder<List<SKFileModel>>(
+        future: queryLocations(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: Text("加载Folders出错"),
             );
           }
-          var dataList = snapshot.data as List<FolderModel>;
+          var dataList = snapshot.data as List<SKFileModel>;
           return Column(
             children: [
               Column(
@@ -84,7 +67,6 @@ class _MFoldersPartial extends ConsumerWidget {
                 dataList.length,
                 (index) {
                   var item = dataList[index];
-                  debugPrint("item: ${item.path}");
 
                   return MouseRegion(
                       child: Container(
@@ -95,7 +77,9 @@ class _MFoldersPartial extends ConsumerWidget {
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
                           debugPrint("点击动图");
-                          context.go("/pictures/${item.pk}");
+                          ref
+                              .read(glLocationProvider.notifier)
+                              .update((state) => item);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +98,7 @@ class _MFoldersPartial extends ConsumerWidget {
                                   ),
                                 ),
                                 Text(
-                                  basename(item.path),
+                                  basename(item.name),
                                   style: const TextStyle(fontSize: 12),
                                 ),
                               ],

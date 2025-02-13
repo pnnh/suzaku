@@ -7,7 +7,7 @@ List<ToolModel> selectTools() {
     name: 'File Tool',
   );
   fileTool.cover = "static/images/common/tools/files.png";
-  fileTool.route = "/files";
+  fileTool.route = "/"; // 默认是文件管理页面
   list.add(fileTool);
 
   var passwordTool = ToolModel(

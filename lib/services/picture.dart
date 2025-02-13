@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
-import 'package:suzaku/models/album.dart';
-import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/models/file.dart';
+
 import 'package:suzaku/models/picture.dart';
 import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/utils/image.dart';
@@ -11,7 +11,7 @@ import 'package:suzaku/utils/image.dart';
 import '../utils/random.dart';
 import 'database.dart';
 
-Future<List<PictureModel>> selectPictures(VSAlbumModel albumModel) async {
+Future<List<PictureModel>> selectPictures(SKFileModel albumModel) async {
   // var sqlText = '''select pk, header, body,
   //   simple_highlight(searches, 3, '[', ']') as highlight
   //   from searches where body match jieba_query('国');''';
@@ -44,14 +44,14 @@ bool isImageExt(String extName) {
   return exts.contains(extName);
 }
 
-Future<List<PictureModel>> selectPicturesByFolder(FolderModel folder) async {
-  if (folder.pk.isEmpty) return List.empty();
+Future<List<PictureModel>> selectPicturesByFolder(SKFileModel folder) async {
+  if (folder.uid.isEmpty) return List.empty();
 
   var sqlText = '''select p.*, f.path path from pictures p 
     left join folders f on p.folder = f.pk where folder = ?
     order by basename limit 100;''';
 
-  var list = await DBHelper.instance.selectAsync(sqlText, [folder.pk]);
+  var list = await DBHelper.instance.selectAsync(sqlText, [folder.uid]);
 
   var pictureList = List.generate(list.length, (i) {
     return PictureModel.fromJson(list[i]);
@@ -79,8 +79,8 @@ values(?, ?, ?);
   commands[sqlTextInsertSearches] = [model.pk, 'picture', model.basename];
 }
 
-Future<void> scanPicturesWorker(FolderModel folderModel) async {
-  if (folderModel.path.trim().isEmpty || folderModel.pk.trim().isEmpty) {
+Future<void> scanPicturesWorker(SKFileModel folderModel) async {
+  if (folderModel.path.trim().isEmpty || folderModel.uid.trim().isEmpty) {
     return;
   }
   var realPath = folderModel.path;
@@ -102,10 +102,10 @@ Future<void> scanPicturesWorker(FolderModel folderModel) async {
       var model =
           PictureModel(picPk, basename(entity.path), dirname(entity.path));
       // 保存到数据库
-      insertPictureIfNotExists(model, folderModel.pk);
+      insertPictureIfNotExists(model, folderModel.uid);
     }
   }
-  await updateFilesCount(folderModel.pk, filesCount);
+  await updateFilesCount(folderModel.uid, filesCount);
 }
 
 Future<bool> requestPermission() async {

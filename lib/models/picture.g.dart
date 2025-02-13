@@ -24,7 +24,7 @@ PictureQueryResult _$PictureQueryResultFromJson(Map<String, dynamic> json) =>
       ..list = (json['list'] as List<dynamic>)
           .map((e) => PictureModel.fromJson(e as Map<String, dynamic>))
           .toList()
-      ..count = json['count'] as int;
+      ..count = (json['count'] as num).toInt();
 
 Map<String, dynamic> _$PictureQueryResultToJson(PictureQueryResult instance) =>
     <String, dynamic>{

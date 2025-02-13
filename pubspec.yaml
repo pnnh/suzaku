@@ -20,16 +20,17 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^1.2.0
+  http: ^1.3.0
   provider: ^6.1.2
-  path: ^1.9.0
+  path: ^1.9.1
   hive_flutter: ^1.1.0
-  flutter_svg: ^2.0.16
+  flutter_svg: ^2.0.17
   uuid: ^4.5.1
-  syncfusion_flutter_datepicker: ^28.1.36
-  syncfusion_flutter_calendar: ^28.1.36
+  syncfusion_flutter_datepicker: ^28.2.5
+  syncfusion_flutter_calendar: ^28.2.5
   validators: ^3.0.0
   split_view: ^3.2.1
+  riverpod: ^2.6.1
   flutter_riverpod: ^2.6.1
   flutter_screenutil: ^5.9.3
   riverpod_annotation: ^2.6.1
@@ -37,15 +38,15 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_staggered_grid_view: ^0.7.0
   multi_split_view: ^3.6.0
-  markdown: ^7.2.2
+  markdown: ^7.3.0
   flutter_highlight: ^0.7.0
   markdown_widget: ^2.3.2+6
   loading_indicator: ^3.1.1
-  go_router: ^14.6.2
+  go_router: ^14.8.0
   logger: ^2.5.0
   sqflite: ^2.4.1
   image_picker: ^1.1.2
-  file_picker: ^8.1.6
+  file_picker: ^8.3.5
   path_provider: ^2.1.5
   assorted_layout_widgets: ^11.0.0
   quantum:
@@ -53,7 +54,8 @@ dependencies:
 
 dev_dependencies:
   flutter_lints:
-  json_serializable: ^6.9.2
+  json_serializable: ^6.9.4
   build_runner:
+  riverpod_generator: ^2.6.4
   flutter_test:
     sdk: flutter

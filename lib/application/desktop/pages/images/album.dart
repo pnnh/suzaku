@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/models/album.dart';
-import 'package:suzaku/models/library.dart';
-import 'package:suzaku/services/album.dart';
+import 'package:suzaku/models/file.dart';
+
+import 'package:suzaku/services/file.dart';
 
 import '../notes/library.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
-final StateProvider<VSAlbumModel?> albumModelProvider =
+final StateProvider<SKFileModel?> albumModelProvider =
     StateProvider((_) => null);
 
 class VSAlbumWidget extends ConsumerStatefulWidget {
-  final VSLibraryModel currentLibrary;
+  final SKFileModel currentLibrary;
 
   const VSAlbumWidget(this.currentLibrary, {super.key});
 
@@ -37,7 +37,7 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
               const SizedBox(
                 width: 16,
               ),
-              Text(widget.currentLibrary.title),
+              Text(widget.currentLibrary.name),
               GestureDetector(
                 child: const Image(
                     image: AssetImage('static/images/console/down-arrow.png')),
@@ -55,9 +55,9 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
           width: double.infinity,
           padding: EdgeInsets.zero,
           child: FutureBuilder(
-            future: selectAlbums(widget.currentLibrary),
+            future: selectFiles(widget.currentLibrary),
             builder: (BuildContext context,
-                AsyncSnapshot<List<VSAlbumModel>> snapshot) {
+                AsyncSnapshot<List<SKFileModel>> snapshot) {
               var albumModels = snapshot.data;
               if (albumModels == null) {
                 return const VSLoading();
@@ -80,7 +80,7 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
 }
 
 class _ItemTitleWidget extends ConsumerWidget {
-  final VSAlbumModel albumModel;
+  final SKFileModel albumModel;
 
   const _ItemTitleWidget(this.albumModel, {super.key});
 
@@ -88,7 +88,7 @@ class _ItemTitleWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MouseRegion(
       child: Container(
-        color: ref.watch(_activeItem) == albumModel.pk
+        color: ref.watch(_activeItem) == albumModel.uid
             ? const Color(0xFFF2F2F2)
             : Colors.transparent,
         padding: EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 16),
@@ -98,7 +98,7 @@ class _ItemTitleWidget extends ConsumerWidget {
               child: SizedBox(
                   width: 120,
                   child: Text(
-                    albumModel.title,
+                    albumModel.name,
                     softWrap: false,
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
@@ -114,7 +114,7 @@ class _ItemTitleWidget extends ConsumerWidget {
         ),
       ),
       onEnter: (event) {
-        ref.read(_activeItem.notifier).update((state) => albumModel.pk);
+        ref.read(_activeItem.notifier).update((state) => albumModel.uid);
       },
       onExit: (event) {
         ref.read(_activeItem.notifier).update((state) => "");

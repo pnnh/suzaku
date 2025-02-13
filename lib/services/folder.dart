@@ -1,19 +1,20 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:suzaku/models/folder.dart';
+import 'package:suzaku/models/file.dart';
+
 import 'package:suzaku/utils/logger.dart';
 
 import '../utils/random.dart';
 import 'database.dart';
 
 class Folders {
-  static Future<FolderModel?> pickFolder() async {
+  static Future<SKFileModel?> pickFolder() async {
     String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
 
     if (selectedDirectory != null) {
       logger.d("selectedDirectory: $selectedDirectory");
 
       var pk = generateRandomString(16);
-      var newFolder = FolderModel(pk, path: selectedDirectory);
+      var newFolder = SKFileModel(pk, path: selectedDirectory);
       await insertFolder(newFolder);
 
       return newFolder;
@@ -23,7 +24,7 @@ class Folders {
   }
 }
 
-Future<FolderModel?> getFolder(String pk) async {
+Future<SKFileModel?> getFolder(String pk) async {
   var sqlText = "select * from folders where pk = ?";
 
   var list = await DBHelper().selectAsync(sqlText, [pk]);
@@ -31,7 +32,7 @@ Future<FolderModel?> getFolder(String pk) async {
   logger.d("list ${list.length}");
 
   if (list.isNotEmpty) {
-    return FolderModel.fromJson(list[0]);
+    return SKFileModel.fromJson(list[0]);
   }
 
   return null;
@@ -43,7 +44,7 @@ Future<void> updateFilesCount(String pk, int count) async {
   await DBHelper().executeAsync(sqlText, [count, pk]);
 }
 
-Future<void> insertFolder(FolderModel model) async {
+Future<void> insertFolder(SKFileModel model) async {
   var sqlTextInsertFolder = '''
 insert into folders(pk, path, count)
 values(?, ?, 0);
@@ -53,16 +54,18 @@ values(?, ?, 0);
   await dbInstance.executeAsync(sqlTextInsertFolder, [pk, model.path]);
 }
 
-Future<List<FolderModel>> queryFolders(String a) async {
-  var sqlText = '''select * from folders;''';
-
-  var list = await DBHelper().selectAsync(sqlText);
-
-  logger.d("list ${list.length}");
-
-  var foldersList = List.generate(list.length, (i) {
-    return FolderModel.fromJson(list[i]);
-  });
+Future<List<SKFileModel>> queryLocations() async {
+  // var sqlText = '''select * from folders;''';
+  //
+  // var list = await DBHelper().selectAsync(sqlText);
+  //
+  // logger.d("list ${list.length}");
+  //
+  // var foldersList = List.generate(list.length, (i) {
+  //   return FolderModel.fromJson(list[i]);
+  // });
+  var foldersList = List<SKFileModel>.empty(growable: true);
+  foldersList.add(SKFileModel("xxxx", path: "file://work", name: "工作目录"));
 
   return foldersList;
 }
