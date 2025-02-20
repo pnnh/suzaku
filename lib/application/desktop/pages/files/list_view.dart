@@ -4,12 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
 import 'package:suzaku/application/desktop/pages/files/folders.dart';
+import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/models/file.dart';
 
 import 'package:suzaku/services/file.dart';
 import 'package:suzaku/services/location.dart';
-
-import '../notes/library.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 
@@ -17,13 +16,13 @@ class SKFileListView extends ConsumerStatefulWidget {
   const SKFileListView({super.key});
 
   @override
-  ConsumerState<SKFileListView> createState() => _VSAlbumWidgetState();
+  ConsumerState<SKFileListView> createState() => _SKFileListViewState();
 }
 
-class _VSAlbumWidgetState extends ConsumerState<SKFileListView> {
+class _SKFileListViewState extends ConsumerState<SKFileListView> {
   final ScrollController _vCtrl = ScrollController();
 
-  _VSAlbumWidgetState();
+  _SKFileListViewState();
 
   /// 计算文字宽度
   double calculateText(String text, TextStyle style) {
@@ -51,7 +50,7 @@ class _VSAlbumWidgetState extends ConsumerState<SKFileListView> {
       width: double.infinity,
       padding: EdgeInsets.zero,
       child: FutureBuilder(
-        future: selectFiles(currentLocation),
+        future: selectFilesFromPath(currentLocation.path),
         builder:
             (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
           var albumModels = snapshot.data;
@@ -268,6 +267,14 @@ class _ItemTitleWidget extends ConsumerWidget {
                 // ref
                 //     .read(albumModelProvider.notifier)
                 //     .update((state) => albumModel);
+              },
+              onDoubleTap: () {
+                if (!fileModel.isFolder) {
+                  return;
+                }
+                ref.read(glLocationProvider.notifier).update((state) =>
+                    SKGlobalLocationNavigator.instance
+                        .newLocation(fileModel.path));
               },
             )
           ],

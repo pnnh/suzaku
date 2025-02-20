@@ -55,7 +55,7 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
           width: double.infinity,
           padding: EdgeInsets.zero,
           child: FutureBuilder(
-            future: selectFiles(widget.currentLibrary),
+            future: selectFilesFromPath(widget.currentLibrary.path),
             builder: (BuildContext context,
                 AsyncSnapshot<List<SKFileModel>> snapshot) {
               var albumModels = snapshot.data;

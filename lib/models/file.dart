@@ -63,6 +63,10 @@ class SKFileModel {
     return lastModified.toIso8601String();
   }
 
+  String get parentPath {
+    return Directory(path).parent.path;
+  }
+
   factory SKFileModel.fromJson(Map<String, dynamic> json) =>
       _$SKFileModelFromJson(json);
 

@@ -3,13 +3,12 @@ import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/models/file.dart';
 
 import 'package:suzaku/services/folder.dart';
+import 'package:suzaku/services/location.dart';
 import 'package:suzaku/utils/logger.dart';
-
-final StateProvider<SKFileModel?> glLocationProvider =
-    StateProvider((_) => null);
 
 class DFoldersBody extends StatelessWidget {
   const DFoldersBody({super.key});
@@ -59,15 +58,15 @@ class _MFoldersPartial extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<SKFileModel>>(
-        future: queryLocations(),
+    return FutureBuilder<List<SKLocationModel>>(
+        future: selectLocations(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: Text("加载Folders出错"),
             );
           }
-          var dataList = snapshot.data as List<SKFileModel>;
+          var dataList = snapshot.data as List<SKLocationModel>;
           return Column(
             children: [
               Column(
@@ -84,10 +83,9 @@ class _MFoldersPartial extends ConsumerWidget {
                     child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
-                          debugPrint("点击动图");
-                          ref
-                              .read(glLocationProvider.notifier)
-                              .update((state) => item);
+                          ref.read(glLocationProvider.notifier).update(
+                              (state) => SKGlobalLocationNavigator.instance
+                                  .initialLocation(item.path));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,12 +104,11 @@ class _MFoldersPartial extends ConsumerWidget {
                                   ),
                                 ),
                                 Text(
-                                  basename(item.name),
+                                  basename(item.path),
                                   style: const TextStyle(fontSize: 12),
                                 ),
                               ],
-                            ),
-                            Text(item.count.toString())
+                            )
                           ],
                         )),
                   ));

@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
 import 'package:suzaku/application/providers/emotion.dart';
 import 'package:suzaku/models/file.dart';
+import 'package:suzaku/services/file.dart';
 
 import 'package:suzaku/services/folder.dart';
+import 'package:suzaku/services/location.dart';
 import 'package:suzaku/utils/random.dart';
 
 final StateProvider<String> directoryProvider = StateProvider((_) => "");
@@ -17,7 +19,7 @@ class VFoldersWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FutureBuilder<List<SKFileModel>>(
-        future: queryLocations(),
+        future: selectFilesFromPath("todo"),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           List<SKFileModel> dataList = List.empty();
           if (snapshot.error != null) {

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_symbols_icons/symbols.dart';
+
+import '../pages/files/state.dart';
 
 class DNavbarComponent extends ConsumerWidget {
   const DNavbarComponent({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var globalLocation = ref.watch(glLocationProvider);
+    if (globalLocation == null) {
+      return Container();
+    }
     return Container(
+      height: 32,
+      padding: const EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -18,21 +27,130 @@ class DNavbarComponent extends ConsumerWidget {
         ),
       ),
       child: Row(
+        spacing: 12,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding:
-                const EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 16),
+            width: 24,
+            height: 24,
             child: GestureDetector(
               onTap: () {
                 context.go("/tools");
               },
-              child: Image(
-                image: AssetImage('static/images/common/global.png'),
-                width: 24,
-                height: 24,
+              child: Icon(
+                Symbols.globe,
+                size: 20,
+                color: const Color(0xff333333),
               ),
             ),
           ),
+          Container(
+            width: 24,
+            height: 24,
+            child: GestureDetector(
+              onTap: () {
+                ref.read(glLocationProvider.notifier).update(
+                    (state) => SKGlobalLocationNavigator.instance.back());
+              },
+              child: Icon(
+                Symbols.arrow_back,
+                size: 20,
+                color: const Color(0xff333333),
+              ),
+            ),
+          ),
+          Container(
+            width: 24,
+            height: 24,
+            child: GestureDetector(
+              onTap: () {
+                context.go("/tools");
+              },
+              child: Icon(
+                Symbols.arrow_forward,
+                size: 20,
+                color: const Color(0xff333333),
+              ),
+            ),
+          ),
+          Container(
+            width: 24,
+            height: 24,
+            child: GestureDetector(
+              onTap: () {
+                context.go("/tools");
+              },
+              child: Icon(
+                Symbols.arrow_upward,
+                size: 20,
+                color: const Color(0xff333333),
+              ),
+            ),
+          ),
+          Container(
+            width: 24,
+            height: 24,
+            child: GestureDetector(
+              onTap: () {
+                context.go("/tools");
+              },
+              child: Icon(
+                Symbols.refresh,
+                size: 20,
+                color: const Color(0xff333333),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 24,
+              padding: const EdgeInsets.only(left: 8, right: 8),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color(0xffdadada),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(2),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    globalLocation.path,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xff333333),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Container(
+            width: 240,
+            height: 24,
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xffdadada),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(2),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  "搜索",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Color(0xff333333),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

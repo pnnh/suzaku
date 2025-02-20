@@ -5,10 +5,10 @@ import 'package:quantum/quantum.dart';
 import 'package:suzaku/models/file.dart';
 import 'package:quantum/utils/md5.dart';
 
-Future<List<SKFileModel>> selectFiles(SKFileModel fileModel) async {
+Future<List<SKFileModel>> selectFilesFromPath(String filePath) async {
   var list = <SKFileModel>[];
 
-  var realPath = Quantum.resolvePath(fileModel.path);
+  var realPath = Quantum.resolvePath(filePath);
   if (realPath == null) {
     return list;
   }

@@ -53,19 +53,3 @@ values(?, ?, 0);
   var dbInstance = DBHelper.instance;
   await dbInstance.executeAsync(sqlTextInsertFolder, [pk, model.path]);
 }
-
-Future<List<SKFileModel>> queryLocations() async {
-  // var sqlText = '''select * from folders;''';
-  //
-  // var list = await DBHelper().selectAsync(sqlText);
-  //
-  // logger.d("list ${list.length}");
-  //
-  // var foldersList = List.generate(list.length, (i) {
-  //   return FolderModel.fromJson(list[i]);
-  // });
-  var foldersList = List<SKFileModel>.empty(growable: true);
-  foldersList.add(SKFileModel("xxxx", path: "file://work", name: "工作目录"));
-
-  return foldersList;
-}

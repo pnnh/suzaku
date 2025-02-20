@@ -3,19 +3,21 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:suzaku/models/file.dart';
 
-Future<List<SKFileModel>> selectLocations(SKFileModel albumModel) async {
-  var list = <SKFileModel>[];
+class SKLocationModel {
+  String path;
 
-  var dir = Directory(albumModel.path);
-  var lists = dir.listSync();
-  for (var item in lists) {
-    if (item is Directory) {
-      var filename = basename(item.path);
-      list.add(SKFileModel(filename, path: item.path, name: filename));
-    }
-  }
+  SKLocationModel(this.path);
 
-  return list;
+  SKLocationModel.fromDirectory(Directory dir) : path = dir.path;
+
+  SKLocationModel.fromPath(String path) : path = path;
+}
+
+Future<List<SKLocationModel>> selectLocations() async {
+  var foldersList = List<SKLocationModel>.empty(growable: true);
+  foldersList.add(SKLocationModel("file://work"));
+
+  return foldersList;
 }
 
 Future<List<SKFileModel>> selectSubDirectories(SKFileModel fileModel) async {
