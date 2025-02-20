@@ -27,10 +27,11 @@ Future<List<SKFileModel>> selectSubDirectories(SKFileModel fileModel) async {
   var dir = Directory(fileModel.path);
   var lists = dir.listSync();
   for (var item in lists) {
-    if (item is Directory) {
-      var filename = basename(item.path);
-      list.add(SKFileModel(filename, path: item.path, name: filename));
+    var filename = basename(item.path);
+    if (filename.startsWith(".")) {
+      continue;
     }
+    list.add(SKFileModel(filename, path: item.path, name: filename));
   }
 
   return list;

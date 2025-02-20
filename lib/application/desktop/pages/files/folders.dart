@@ -34,7 +34,15 @@ class _FoldersBodyState extends ConsumerWidget {
           constraints: BoxConstraints.tightFor(
               height: max(512, constraints.maxHeight), width: 256),
           child: Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  right: BorderSide(
+                    color: Colors.grey.withOpacity(0.1),
+                    width: 1,
+                  ),
+                ),
+              ),
               child: Column(
                 children: [
                   const _MFoldersPartial(),

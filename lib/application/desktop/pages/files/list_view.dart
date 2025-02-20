@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
 import 'package:suzaku/application/desktop/pages/files/folders.dart';
@@ -58,14 +59,88 @@ class _VSAlbumWidgetState extends ConsumerState<SKFileListView> {
             return const VSLoading();
           }
 
-          return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: albumModels.map((album) {
-                  return _ItemWidget(album);
-                }).toList(),
-              ));
+          return Container(
+            child: Column(
+              children: [
+                Container(
+                  height: 32,
+                  padding: EdgeInsets.only(left: 32, right: 32),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Colors.grey.withOpacity(0.5),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 64,
+                        child: Text(
+                          "名称",
+                          softWrap: false,
+                          style: const TextStyle(
+                              fontSize: 14, color: const Color(0xff333333)),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 64,
+                        child: Text(
+                          "类型",
+                          softWrap: false,
+                          style: const TextStyle(
+                              fontSize: 14, color: const Color(0xff333333)),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 80,
+                        child: Text(
+                          "修改时间",
+                          softWrap: false,
+                          style: const TextStyle(
+                              fontSize: 14, color: const Color(0xff333333)),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 64,
+                        child: Text(
+                          "大小",
+                          softWrap: false,
+                          style: const TextStyle(
+                              fontSize: 14, color: const Color(0xff333333)),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: albumModels.map((fileModel) {
+                            return _ItemWidget(fileModel);
+                          }).toList(),
+                        )))
+              ],
+            ),
+          );
         },
       ),
     );
@@ -73,66 +148,59 @@ class _VSAlbumWidgetState extends ConsumerState<SKFileListView> {
 }
 
 class _ItemWidget extends ConsumerWidget {
-  final SKFileModel albumModel;
+  final SKFileModel fileModel;
   final int level;
   final StateProvider<bool> openSub = StateProvider<bool>((_) => false);
 
-  _ItemWidget(this.albumModel, {this.level = 0, super.key});
+  _ItemWidget(this.fileModel, {this.level = 0, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<SKFileModel>>(
-      future: selectSubDirectories(albumModel),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
-        var subAlbumModels = snapshot.data;
-        var showSubModels = ref.watch(openSub) ? subAlbumModels ?? [] : [];
-        return Container(
-            child: Column(
+    return Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey.withOpacity(0.1),
+              width: 1,
+            ),
+          ),
+        ),
+        child: Column(
           children: [
             _ItemTitleWidget(
-              albumModel,
+              fileModel,
               openSub,
-              subAlbumModels ?? [],
               level: this.level,
             ),
-            ...showSubModels
-                .map((e) => _ItemWidget(
-                      e,
-                      level: this.level + 1,
-                    ))
-                .toList()
+            _ItemChildrenWidget(fileModel, openSub, level: this.level),
           ],
         ));
-      },
-    );
   }
 }
 
 class _ItemTitleWidget extends ConsumerWidget {
-  final SKFileModel albumModel;
+  final SKFileModel fileModel;
   final StateProvider<bool> openSub;
   final int level;
-  final List<SKFileModel> subAlbumModels;
 
-  const _ItemTitleWidget(this.albumModel, this.openSub, this.subAlbumModels,
+  const _ItemTitleWidget(this.fileModel, this.openSub,
       {this.level = 0, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MouseRegion(
       child: Container(
-        color: ref.watch(_activeItem) == albumModel.uid
+        color: ref.watch(_activeItem) == fileModel.uid
             ? const Color(0xFFF2F2F2)
             : Colors.transparent,
-        padding: EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 16),
+        padding: EdgeInsets.only(left: 16, top: 6, bottom: 6, right: 16),
         child: Row(
           children: [
             SizedBox(
               width: this.level * 16,
             ),
             GestureDetector(
-              child: this.subAlbumModels.length > 0
+              child: this.fileModel.isFolder
                   ? VSArrowWidget(transform: ref.watch(openSub) ? 0 : -90)
                   : SizedBox(
                       height: 16,
@@ -143,15 +211,59 @@ class _ItemTitleWidget extends ConsumerWidget {
               },
             ),
             GestureDetector(
-              child: SizedBox(
-                  width: 120,
-                  child: Text(
-                    albumModel.name,
-                    softWrap: false,
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  )),
+              child: Row(
+                spacing: 8,
+                children: [
+                  SvgPicture.asset(
+                    "static/images/icons/${fileModel.isFolder ? "folder" : "file"}.svg",
+                    color: const Color(0xffCDCDCD),
+                    height: 16,
+                    width: 16,
+                    //    fit: BoxFit.fitWidth
+                  ),
+                  SizedBox(
+                      width: 120,
+                      child: Text(
+                        fileModel.name,
+                        softWrap: false,
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      )),
+                  SizedBox(
+                    width: 96,
+                    child: Text(fileModel.fileMime,
+                        softWrap: false,
+                        maxLines: 1,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontSize: 12, color: const Color(0xff333333)),
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  SizedBox(
+                    width: 180,
+                    child: Text(fileModel.lastModifiedString,
+                        softWrap: false,
+                        maxLines: 1,
+                        style: const TextStyle(
+                            fontSize: 12, color: const Color(0xff333333)),
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  SizedBox(
+                    width: 96,
+                    child: Text(
+                      fileModel.fileSizeString,
+                      softWrap: false,
+                      style: const TextStyle(
+                          fontSize: 12, color: const Color(0xff333333)),
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
               onTap: () {
                 // ref
                 //     .read(albumModelProvider.notifier)
@@ -162,10 +274,42 @@ class _ItemTitleWidget extends ConsumerWidget {
         ),
       ),
       onEnter: (event) {
-        ref.read(_activeItem.notifier).update((state) => albumModel.uid);
+        ref.read(_activeItem.notifier).update((state) => fileModel.uid);
       },
       onExit: (event) {
         ref.read(_activeItem.notifier).update((state) => "");
+      },
+    );
+  }
+}
+
+class _ItemChildrenWidget extends ConsumerWidget {
+  final SKFileModel fileModel;
+  final int level;
+  final StateProvider<bool> openSub;
+
+  const _ItemChildrenWidget(this.fileModel, this.openSub,
+      {this.level = 0, super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var open = ref.watch(openSub);
+    if (!open) {
+      return Container();
+    }
+    return FutureBuilder<List<SKFileModel>>(
+      future: selectSubDirectories(fileModel),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
+        var subFileModels = snapshot.data ?? [];
+        return Container(
+            child: Column(
+                children: subFileModels
+                    .map((e) => _ItemWidget(
+                          e,
+                          level: this.level + 1,
+                        ))
+                    .toList()));
       },
     );
   }
