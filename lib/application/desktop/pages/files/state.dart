@@ -81,3 +81,5 @@ class SKGlobalLocationNavigator {
 
 final StateProvider<SKLocationModel?> glLocationProvider =
     StateProvider((_) => null);
+
+final StateProvider<String> listOrGridProvider = StateProvider((_) => "list");
