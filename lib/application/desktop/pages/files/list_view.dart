@@ -50,11 +50,11 @@ class _SKFileListViewState extends ConsumerState<SKFileListView> {
       width: double.infinity,
       padding: EdgeInsets.zero,
       child: FutureBuilder(
-        future: selectFilesFromPath(currentLocation.path),
+        future: selectFilesFromPath(currentLocation.realPath),
         builder:
             (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
-          var albumModels = snapshot.data;
-          if (albumModels == null) {
+          var fileModels = snapshot.data;
+          if (fileModels == null) {
             return const VSLoading();
           }
 
@@ -133,7 +133,7 @@ class _SKFileListViewState extends ConsumerState<SKFileListView> {
                         scrollDirection: Axis.vertical,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: albumModels.map((fileModel) {
+                          children: fileModels.map((fileModel) {
                             return _ItemWidget(fileModel);
                           }).toList(),
                         )))

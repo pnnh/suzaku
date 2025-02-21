@@ -4,13 +4,20 @@ import 'package:path/path.dart';
 import 'package:suzaku/models/file.dart';
 
 class SKLocationModel {
-  String path;
+  String realPath;
+  String showPath = "";
+  bool isRoot = false;
+  bool isLeaf = false;
 
-  SKLocationModel(this.path);
+  SKLocationModel(this.realPath);
 
-  SKLocationModel.fromDirectory(Directory dir) : path = dir.path;
+  SKLocationModel.fromDirectory(Directory dir) : realPath = dir.path;
 
-  SKLocationModel.fromPath(String path) : path = path;
+  static SKLocationModel fromPath(String path) {
+    var model = SKLocationModel(path);
+    model.showPath = path;
+    return model;
+  }
 }
 
 Future<List<SKLocationModel>> selectLocations() async {

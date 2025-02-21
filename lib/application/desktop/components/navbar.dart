@@ -56,7 +56,9 @@ class DNavbarComponent extends ConsumerWidget {
               child: Icon(
                 Symbols.arrow_back,
                 size: 20,
-                color: const Color(0xff333333),
+                color: globalLocation.isRoot
+                    ? const Color(0xffcccccc)
+                    : const Color(0xff333333),
               ),
             ),
           ),
@@ -65,12 +67,15 @@ class DNavbarComponent extends ConsumerWidget {
             height: 24,
             child: GestureDetector(
               onTap: () {
-                context.go("/tools");
+                ref.read(glLocationProvider.notifier).update(
+                    (state) => SKGlobalLocationNavigator.instance.forward());
               },
               child: Icon(
                 Symbols.arrow_forward,
                 size: 20,
-                color: const Color(0xff333333),
+                color: globalLocation.isLeaf
+                    ? const Color(0xffcccccc)
+                    : const Color(0xff333333),
               ),
             ),
           ),
@@ -79,12 +84,15 @@ class DNavbarComponent extends ConsumerWidget {
             height: 24,
             child: GestureDetector(
               onTap: () {
-                context.go("/tools");
+                ref.read(glLocationProvider.notifier).update(
+                    (state) => SKGlobalLocationNavigator.instance.upward());
               },
               child: Icon(
                 Symbols.arrow_upward,
                 size: 20,
-                color: const Color(0xff333333),
+                color: globalLocation.isRoot
+                    ? const Color(0xffcccccc)
+                    : const Color(0xff333333),
               ),
             ),
           ),
@@ -92,9 +100,7 @@ class DNavbarComponent extends ConsumerWidget {
             width: 24,
             height: 24,
             child: GestureDetector(
-              onTap: () {
-                context.go("/tools");
-              },
+              onTap: () {},
               child: Icon(
                 Symbols.refresh,
                 size: 20,
@@ -117,7 +123,7 @@ class DNavbarComponent extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    globalLocation.path,
+                    globalLocation.showPath,
                     style: TextStyle(
                       fontSize: 12,
                       color: Color(0xff333333),

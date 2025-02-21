@@ -85,7 +85,7 @@ class _MFoldersPartial extends ConsumerWidget {
                         onTap: () {
                           ref.read(glLocationProvider.notifier).update(
                               (state) => SKGlobalLocationNavigator.instance
-                                  .initialLocation(item.path));
+                                  .initialLocation(item.realPath));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +104,7 @@ class _MFoldersPartial extends ConsumerWidget {
                                   ),
                                 ),
                                 Text(
-                                  basename(item.path),
+                                  basename(item.realPath),
                                   style: const TextStyle(fontSize: 12),
                                 ),
                               ],
