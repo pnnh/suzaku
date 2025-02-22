@@ -3,12 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/application/desktop/pages/files/folders.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/models/file.dart';
-
 import 'package:suzaku/services/file.dart';
-import 'package:suzaku/services/location.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 
@@ -305,7 +302,7 @@ class _ItemChildrenWidget extends ConsumerWidget {
       return Container();
     }
     return FutureBuilder<List<SKFileModel>>(
-      future: selectSubDirectories(fileModel),
+      future: selectFilesFromPath(fileModel.path),
       builder:
           (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
         var subFileModels = snapshot.data ?? [];

@@ -2,16 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/application/desktop/pages/files/folders.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
-import 'package:suzaku/models/file.dart';
-
-import 'package:suzaku/services/file.dart';
-import 'package:suzaku/services/location.dart';
 
 class SKFileQuickbarView extends ConsumerStatefulWidget {
   const SKFileQuickbarView({super.key});
@@ -21,15 +14,7 @@ class SKFileQuickbarView extends ConsumerStatefulWidget {
 }
 
 class _SKFileQuickbarViewState extends ConsumerState<SKFileQuickbarView> {
-  final ScrollController _vCtrl = ScrollController();
-
   _SKFileQuickbarViewState();
-
-  @override
-  void dispose() {
-    _vCtrl.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

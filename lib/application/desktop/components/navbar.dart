@@ -120,14 +120,59 @@ class DNavbarComponent extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(2),
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    globalLocation.showPath,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xff333333),
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        globalLocation.showPath,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xff333333),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Symbols.star,
+                            size: 20,
+                            color: const Color(0xff333333),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 24,
+                        height: 24,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Symbols.edit_document,
+                            size: 20,
+                            color: const Color(0xff333333),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 24,
+                        height: 24,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Symbols.folder_managed,
+                            size: 20,
+                            color: const Color(0xff333333),
+                          ),
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),

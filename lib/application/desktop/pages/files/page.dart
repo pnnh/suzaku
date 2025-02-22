@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzaku/application/desktop/components/navbar.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
+import 'package:suzaku/services/notes/notes.dart';
 
-import 'folders.dart';
-import 'grid_view.dart';
-import 'list_view.dart';
-import 'quickbar.dart';
+import 'directory_view.dart';
+import 'library/library_view.dart';
 
 class DFilesPage extends ConsumerWidget {
   const DFilesPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var globalLocation = ref.watch(glLocationProvider);
+
+    var isLibrary = false;
+    if (globalLocation != null) {
+      isLibrary = isNoteLibrary(globalLocation.realPath);
+    }
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -21,27 +26,9 @@ class DFilesPage extends ConsumerWidget {
           children: [
             DNavbarComponent(),
             Expanded(
-                child: Container(
-              color: Colors.white,
-              child: Row(
-                children: [
-                  const DFoldersBody(),
-                  Expanded(
-                      child: Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        const SKFileQuickbarView(),
-                        Expanded(
-                            child: ref.watch(listOrGridProvider) == "list"
-                                ? SKFileListView()
-                                : SKFileGridView())
-                      ],
-                    ),
-                  ))
-                ],
-              ),
-            ))
+                child: isLibrary
+                    ? SKFileLibraryView(globalLocation?.realPath ?? "")
+                    : SKFileDirectoryView())
           ],
         ),
       )),

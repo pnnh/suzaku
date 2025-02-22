@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quantum/quantum.dart';
 import 'package:suzaku/services/location.dart';
-import 'dart:io';
 
 class SKGlobalLocationNavigator {
   Map<int, SKLocationModel> locationHistory = {};
@@ -29,7 +30,11 @@ class SKGlobalLocationNavigator {
   SKLocationModel newLocation(String path) {
     var newLoc = SKLocationModel.fromPath(path);
     newLoc.isLeaf = true;
-    newLoc.showPath = path.replaceFirst(realPath, initPath);
+    var showPath = path.replaceFirst(realPath, initPath);
+    if (Platform.isWindows) {
+      showPath = showPath.replaceAll("\\", "/");
+    }
+    newLoc.showPath = showPath;
     var locItemCount = locationHistory.length;
     for (var i = currentLocationIndex + 1; i < locItemCount; i++) {
       locationHistory.remove(i);
