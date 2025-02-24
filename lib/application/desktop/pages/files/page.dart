@@ -4,7 +4,7 @@ import 'package:suzaku/application/desktop/components/navbar.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/services/notes/notes.dart';
 
-import 'directory_view.dart';
+import 'directory/directory_view.dart';
 import 'library/library_view.dart';
 
 class DFilesPage extends ConsumerWidget {

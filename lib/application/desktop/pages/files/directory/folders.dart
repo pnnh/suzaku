@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,6 +45,24 @@ class _FoldersBodyState extends ConsumerWidget {
               ),
               child: Column(
                 children: [
+                  Container(
+                    padding:
+                        EdgeInsets.only(top: 8, right: 16, bottom: 8, left: 16),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: const Color(0xffe3e3e3), width: 0.5))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("位置"),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(Symbols.add),
+                        )
+                      ],
+                    ),
+                  ),
                   const _MFoldersPartial(),
                 ],
               )), // your column

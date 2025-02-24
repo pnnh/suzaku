@@ -8,7 +8,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:quantum/utils/image.dart';
 import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/application/desktop/pages/files/folders.dart';
+import 'package:suzaku/application/desktop/pages/files/directory/folders.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/models/file.dart';
 

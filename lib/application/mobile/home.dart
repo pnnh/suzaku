@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
-import 'package:suzaku/application/desktop/pages/files/folders.dart';
+import 'package:suzaku/application/desktop/pages/files/directory/folders.dart';
 import 'package:suzaku/models/picture.dart';
 import 'package:suzaku/services/image/image.dart';
 import 'package:suzaku/services/picture.dart';
