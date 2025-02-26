@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -122,17 +121,17 @@ class VFoldersWidget extends ConsumerWidget {
   }
 
   Future<SKFileModel?> pickFolder() async {
-    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
-
-    if (selectedDirectory != null) {
-      debugPrint("selectedDirectory: $selectedDirectory");
-
-      var pk = generateRandomString(16);
-      var newFolder = SKFileModel(pk, path: selectedDirectory);
-      await insertFolder(newFolder);
-
-      return newFolder;
-    }
+    // String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+    //
+    // if (selectedDirectory != null) {
+    //   debugPrint("selectedDirectory: $selectedDirectory");
+    //
+    //   var pk = generateRandomString(16);
+    //   var newFolder = SKFileModel(pk, path: selectedDirectory);
+    //   await insertFolder(newFolder);
+    //
+    //   return newFolder;
+    // }
 
     return null;
   }

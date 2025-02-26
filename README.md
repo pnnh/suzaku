@@ -15,10 +15,11 @@ flutter build web --release --web-renderer html
 ```shell
 flutter pub run build_runner build
 flutter pub run build_runner build --delete-conflicting-outputs
+# 或者
+dart run build_runner build  --delete-conflicting-outputs 
 ```
 
 ### web运行注意
-
 
 ```bash
 flutter run -d chrome --web-hostname=127.0.0.1 --web-port=3500

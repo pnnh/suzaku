@@ -47,7 +47,6 @@ dependencies:
   logger: ^2.5.0
   sqflite: ^2.4.1
   image_picker: ^1.1.2
-  file_picker: ^8.3.5
   path_provider: ^2.1.5
   assorted_layout_widgets: ^11.0.0
   quantum:
@@ -60,3 +59,4 @@ dev_dependencies:
   riverpod_generator: ^2.6.4
   flutter_test:
     sdk: flutter
+  freezed: ^2.5.8

@@ -18,11 +18,6 @@ class SvgModel with _$SvgModel {
 }
 
 @riverpod
-String helloWorld(HelloWorldRef ref) {
-  return 'Hello world';
-}
-
-@riverpod
 class SvgModelState extends _$SvgModelState {
   @override
   Future<SvgModel> build() async {

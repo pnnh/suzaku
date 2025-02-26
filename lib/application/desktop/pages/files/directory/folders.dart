@@ -4,10 +4,8 @@ import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quantum/quantum.dart' as quantum;
 import 'package:suzaku/application/desktop/pages/files/state.dart';
-import 'package:suzaku/models/file.dart';
-
-import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/services/location.dart';
 import 'package:suzaku/utils/logger.dart';
 
@@ -57,7 +55,19 @@ class _FoldersBodyState extends ConsumerWidget {
                       children: [
                         Text("位置"),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () async {
+                            var selectedPath =
+                                await quantum.Quantum.chooseFiles();
+                            debugPrint("selectedPath $selectedPath");
+                            if (selectedPath != null) {
+                              var model =
+                                  SKLocationModel.fromPath(selectedPath);
+                              await SKLocationModel.insertFolder(model);
+                              ref
+                                  .read(filesPageStateProvider.notifier)
+                                  .reloadLocations(selectedPath ?? "");
+                            }
+                          },
                           child: Icon(Symbols.add),
                         )
                       ],
@@ -77,64 +87,60 @@ class _MFoldersPartial extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<SKLocationModel>>(
-        future: selectLocations(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: Text("加载Folders出错"),
-            );
-          }
-          var dataList = snapshot.data as List<SKLocationModel>;
-          return Column(
-            children: [
-              Column(
-                  children: List.generate(
-                dataList.length,
-                (index) {
-                  var item = dataList[index];
+    var filesPageState = ref.watch(filesPageStateProvider);
+    debugPrint("filesPageState build");
+    return switch (filesPageState) {
+      AsyncData(:final value) => Column(
+          children: [
+            Column(
+                children: List.generate(
+              value.locationList.length,
+              (index) {
+                var item = value.locationList[index];
 
-                  return MouseRegion(
-                      child: Container(
-                    height: 32,
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    color: Colors.transparent,
-                    child: GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          ref.read(glLocationProvider.notifier).update(
-                              (state) => SKGlobalLocationNavigator.instance
-                                  .initialLocation(item.realPath));
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                      left: 0, right: 8, top: 0, bottom: 0),
-                                  child: SvgPicture.asset(
-                                    "static/images/icons/folder.svg",
-                                    color: const Color(0xff444444),
-                                    height: 16,
-                                    width: 16,
-                                    //    fit: BoxFit.fitWidth
-                                  ),
+                return MouseRegion(
+                    child: Container(
+                  height: 32,
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  color: Colors.transparent,
+                  child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        ref.read(glLocationProvider.notifier).update((state) =>
+                            SKGlobalLocationNavigator.instance
+                                .initialLocation(item.realPath));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 8, top: 0, bottom: 0),
+                                child: SvgPicture.asset(
+                                  "static/images/icons/folder.svg",
+                                  color: const Color(0xff444444),
+                                  height: 16,
+                                  width: 16,
+                                  //    fit: BoxFit.fitWidth
                                 ),
-                                Text(
-                                  basename(item.realPath),
-                                  style: const TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            )
-                          ],
-                        )),
-                  ));
-                },
-              ))
-            ],
-          );
-        });
+                              ),
+                              Text(
+                                basename(item.realPath),
+                                style: const TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                ));
+              },
+            ))
+          ],
+        ),
+      AsyncError(:final error) => Text('error: $error'),
+      _ => const Text('loading'),
+    };
   }
 }

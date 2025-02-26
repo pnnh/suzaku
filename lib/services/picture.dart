@@ -9,7 +9,6 @@ import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/utils/image.dart';
 
 import '../utils/random.dart';
-import 'database.dart';
 
 Future<List<PictureModel>> selectPictures(SKFileModel albumModel) async {
   // var sqlText = '''select pk, header, body,
@@ -51,13 +50,14 @@ Future<List<PictureModel>> selectPicturesByFolder(SKFileModel folder) async {
     left join folders f on p.folder = f.pk where folder = ?
     order by basename limit 100;''';
 
-  var list = await DBHelper.instance.selectAsync(sqlText, [folder.uid]);
-
-  var pictureList = List.generate(list.length, (i) {
-    return PictureModel.fromJson(list[i]);
-  });
-
-  return pictureList;
+  // var list = await DBHelper.instance.selectAsync(sqlText, [folder.uid]);
+  //
+  // var pictureList = List.generate(list.length, (i) {
+  //   return PictureModel.fromJson(list[i]);
+  // });
+  //
+  // return pictureList;
+  return List.empty();
 }
 
 void insertPictureIfNotExists(PictureModel model, String folderPk) async {

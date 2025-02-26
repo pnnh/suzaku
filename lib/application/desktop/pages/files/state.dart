@@ -3,6 +3,11 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quantum/quantum.dart';
 import 'package:suzaku/services/location.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
+
+part 'state.g.dart';
 
 class SKGlobalLocationNavigator {
   Map<int, SKLocationModel> locationHistory = {};
@@ -84,7 +89,44 @@ class SKGlobalLocationNavigator {
   }
 }
 
+// 当前选中的位置
 final StateProvider<SKLocationModel?> glLocationProvider =
     StateProvider((_) => null);
 
 final StateProvider<String> listOrGridProvider = StateProvider((_) => "list");
+
+class FilesPageModel {
+  String text;
+  List<SKLocationModel> locationList;
+
+  FilesPageModel({required this.text, required this.locationList});
+
+  FilesPageModel.empty()
+      : text = "",
+        locationList = [];
+}
+
+@riverpod
+class FilesPageState extends _$FilesPageState {
+  @override
+  Future<FilesPageModel> build() async {
+    var locations = await SKLocationModel.selectLocations();
+    return FilesPageModel(text: '暂无内容', locationList: locations);
+  }
+
+  Future<void> reloadLocations(String loc) async {
+    debugPrint("reloadLocations: $loc");
+
+    try {
+      var locationList = await SKLocationModel.selectLocations();
+
+      var model = FilesPageModel(text: "text", locationList: locationList);
+      state = AsyncData(model);
+      return;
+    } catch (ex) {
+      var errMsg = "FilesPageState selectLocations：${ex.toString()}";
+      debugPrint(errMsg);
+      state = AsyncData(FilesPageModel.empty());
+    }
+  }
+}
