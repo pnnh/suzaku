@@ -1,19 +1,12 @@
 import 'dart:io';
 
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:quantum/utils/image.dart';
-import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/application/desktop/pages/files/directory/folders.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
-import 'package:suzaku/models/file.dart';
-
-import 'package:suzaku/services/file.dart';
-import 'package:suzaku/services/location.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 
@@ -46,9 +39,9 @@ class _SKFileGridViewState extends ConsumerState<SKFileGridView> {
       width: double.infinity,
       padding: EdgeInsets.zero,
       child: FutureBuilder(
-        future: selectFilesFromPath(currentLocation.realPath),
+        future: QMFileModel.selectFilesFromPath(currentLocation.realPath),
         builder:
-            (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<QMFileModel>> snapshot) {
           var fileModels = snapshot.data;
           if (fileModels == null) {
             return const VSLoading();
@@ -73,7 +66,7 @@ class _SKFileGridViewState extends ConsumerState<SKFileGridView> {
 }
 
 class _ItemWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
 
   _ItemWidget(this.fileModel, {super.key});
 
@@ -106,7 +99,7 @@ class _ItemWidget extends ConsumerWidget {
 }
 
 class _ItemTitleWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
 
   const _ItemTitleWidget(this.fileModel, {super.key});
 
@@ -149,7 +142,7 @@ class _ItemTitleWidget extends ConsumerWidget {
 }
 
 class _ItemPreviewWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
 
   _ItemPreviewWidget(this.fileModel, {super.key});
 

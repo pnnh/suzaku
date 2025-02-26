@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:suzaku/application/components/empty.dart';
-import 'package:suzaku/models/file.dart';
 
 import '../images/album.dart';
 
@@ -9,7 +9,7 @@ final StateProvider<String> _activeItem = StateProvider((_) => "");
 final StateProvider<String> activeSelectLibrary = StateProvider((_) => "");
 
 class VSLibraryWidget extends ConsumerWidget {
-  final List<SKFileModel> libraries;
+  final List<QMFileModel> libraries;
 
   const VSLibraryWidget(this.libraries, {super.key});
 
@@ -73,7 +73,7 @@ class VSLibraryWidget extends ConsumerWidget {
 }
 
 class _ItemWidget extends ConsumerWidget {
-  final SKFileModel libraryModel;
+  final QMFileModel libraryModel;
 
   const _ItemWidget(this.libraryModel);
 

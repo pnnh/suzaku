@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:suzaku/application/components/loading.dart';
-import 'package:suzaku/models/file.dart';
-
-import 'package:suzaku/services/file.dart';
 
 import '../notes/library.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
-final StateProvider<SKFileModel?> albumModelProvider =
+final StateProvider<QMFileModel?> albumModelProvider =
     StateProvider((_) => null);
 
 class VSAlbumWidget extends ConsumerStatefulWidget {
-  final SKFileModel currentLibrary;
+  final QMFileModel currentLibrary;
 
   const VSAlbumWidget(this.currentLibrary, {super.key});
 
@@ -55,9 +53,9 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
           width: double.infinity,
           padding: EdgeInsets.zero,
           child: FutureBuilder(
-            future: selectFilesFromPath(widget.currentLibrary.path),
+            future: QMFileModel.selectFilesFromPath(widget.currentLibrary.path),
             builder: (BuildContext context,
-                AsyncSnapshot<List<SKFileModel>> snapshot) {
+                AsyncSnapshot<List<QMFileModel>> snapshot) {
               var albumModels = snapshot.data;
               if (albumModels == null) {
                 return const VSLoading();
@@ -80,7 +78,7 @@ class _VSAlbumWidgetState extends ConsumerState<VSAlbumWidget> {
 }
 
 class _ItemTitleWidget extends ConsumerWidget {
-  final SKFileModel albumModel;
+  final QMFileModel albumModel;
 
   const _ItemTitleWidget(this.albumModel, {super.key});
 

@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:suzaku/services/database/database.dart';
+import 'package:quantum/database/database.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
+
+import 'database.dart';
 
 part 'location.g.dart';
 
@@ -48,7 +50,7 @@ on conflict(uid) do update set show_path = excluded.show_path, real_path = exclu
 ''';
     var uuid = const Uuid();
     var uid = uuid.v4();
-    var client = await SqliteClient.connect();
+    var client = await connectMainDatabase();
     await client.executeAsync(sqlTextInsertFolder,
         [model.uid, model.showPath, model.showPath, model.realPath]);
   }
@@ -60,7 +62,7 @@ on conflict(uid) do update set show_path = excluded.show_path, real_path = exclu
 
     var sqlText = '''select * from locations;''';
 
-    var client = await SqliteClient.connect();
+    var client = await connectMainDatabase();
     var list = await client.selectAsync(sqlText);
 
     debugPrint("list ${list.length}");

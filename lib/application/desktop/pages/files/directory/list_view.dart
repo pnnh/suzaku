@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:suzaku/application/components/arrow.dart';
 import 'package:suzaku/application/components/loading.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
-import 'package:suzaku/models/file.dart';
-import 'package:suzaku/services/file.dart';
 
 final StateProvider<String> _activeItem = StateProvider((_) => "");
 
@@ -47,9 +46,9 @@ class _SKFileListViewState extends ConsumerState<SKFileListView> {
       width: double.infinity,
       padding: EdgeInsets.zero,
       child: FutureBuilder(
-        future: selectFilesFromPath(currentLocation.realPath),
+        future: QMFileModel.selectFilesFromPath(currentLocation.realPath),
         builder:
-            (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<QMFileModel>> snapshot) {
           var fileModels = snapshot.data;
           if (fileModels == null) {
             return const VSLoading();
@@ -144,7 +143,7 @@ class _SKFileListViewState extends ConsumerState<SKFileListView> {
 }
 
 class _ItemWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
   final int level;
   final StateProvider<bool> openSub = StateProvider<bool>((_) => false);
 
@@ -175,7 +174,7 @@ class _ItemWidget extends ConsumerWidget {
 }
 
 class _ItemTitleWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
   final StateProvider<bool> openSub;
   final int level;
 
@@ -288,7 +287,7 @@ class _ItemTitleWidget extends ConsumerWidget {
 }
 
 class _ItemChildrenWidget extends ConsumerWidget {
-  final SKFileModel fileModel;
+  final QMFileModel fileModel;
   final int level;
   final StateProvider<bool> openSub;
 
@@ -301,10 +300,10 @@ class _ItemChildrenWidget extends ConsumerWidget {
     if (!open) {
       return Container();
     }
-    return FutureBuilder<List<SKFileModel>>(
-      future: selectFilesFromPath(fileModel.path),
+    return FutureBuilder<List<QMFileModel>>(
+      future: QMFileModel.selectFilesFromPath(fileModel.path),
       builder:
-          (BuildContext context, AsyncSnapshot<List<SKFileModel>> snapshot) {
+          (BuildContext context, AsyncSnapshot<List<QMFileModel>> snapshot) {
         var subFileModels = snapshot.data ?? [];
         return Container(
             child: Column(

@@ -4,6 +4,7 @@ import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:quantum/quantum.dart' as quantum;
 import 'package:suzaku/application/desktop/pages/files/state.dart';
 import 'package:suzaku/services/location.dart';
@@ -56,8 +57,7 @@ class _FoldersBodyState extends ConsumerWidget {
                         Text("位置"),
                         GestureDetector(
                           onTap: () async {
-                            var selectedPath =
-                                await quantum.Quantum.chooseFiles();
+                            var selectedPath = await QMFileModel.chooseFiles();
                             debugPrint("selectedPath $selectedPath");
                             if (selectedPath != null) {
                               var model =

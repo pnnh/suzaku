@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
+import 'package:quantum/filesystem/file.dart';
 import 'package:suzaku/application/providers/emotion.dart';
-import 'package:suzaku/models/file.dart';
-import 'package:suzaku/services/file.dart';
-
-import 'package:suzaku/services/folder.dart';
-import 'package:suzaku/services/location.dart';
-import 'package:suzaku/utils/random.dart';
 
 final StateProvider<String> directoryProvider = StateProvider((_) => "");
 
@@ -17,17 +12,17 @@ class VFoldersWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FutureBuilder<List<SKFileModel>>(
-        future: selectFilesFromPath("todo"),
+    return FutureBuilder<List<QMFileModel>>(
+        future: QMFileModel.selectFilesFromPath("todo"),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          List<SKFileModel> dataList = List.empty();
+          List<QMFileModel> dataList = List.empty();
           if (snapshot.error != null) {
             return const Center(
               child: Text("加载Folders出错"),
             );
           }
           if (snapshot.hasData) {
-            dataList = snapshot.data as List<SKFileModel>;
+            dataList = snapshot.data as List<QMFileModel>;
           }
           return Column(
             children: [
@@ -120,14 +115,14 @@ class VFoldersWidget extends ConsumerWidget {
         });
   }
 
-  Future<SKFileModel?> pickFolder() async {
+  Future<QMFileModel?> pickFolder() async {
     // String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
     //
     // if (selectedDirectory != null) {
     //   debugPrint("selectedDirectory: $selectedDirectory");
     //
     //   var pk = generateRandomString(16);
-    //   var newFolder = SKFileModel(pk, path: selectedDirectory);
+    //   var newFolder = QMFileModel(pk, path: selectedDirectory);
     //   await insertFolder(newFolder);
     //
     //   return newFolder;

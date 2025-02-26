@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:suzaku/models/file.dart';
+import 'package:quantum/filesystem/file.dart';
 
-final StateProvider<SKFileModel> folderProvider =
-    StateProvider((_) => SKFileModel("", path: ""));
+final StateProvider<QMFileModel> folderProvider =
+    StateProvider((_) => QMFileModel("", path: ""));
 
 class Hover extends StateNotifier<String> {
   Hover() : super("");

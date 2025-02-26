@@ -1,18 +1,16 @@
-import 'package:suzaku/models/file.dart';
-
-import 'package:suzaku/utils/logger.dart';
+import 'package:quantum/filesystem/file.dart';
 
 import '../utils/random.dart';
 
 class Folders {
-  static Future<SKFileModel?> pickFolder() async {
+  static Future<QMFileModel?> pickFolder() async {
     // String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
     //
     // if (selectedDirectory != null) {
     //   logger.d("selectedDirectory: $selectedDirectory");
     //
     //   var pk = generateRandomString(16);
-    //   var newFolder = SKFileModel(pk, path: selectedDirectory);
+    //   var newFolder = QMFileModel(pk, path: selectedDirectory);
     //   await insertFolder(newFolder);
     //
     //   return newFolder;
@@ -22,7 +20,7 @@ class Folders {
   }
 }
 
-Future<SKFileModel?> getFolder(String pk) async {
+Future<QMFileModel?> getFolder(String pk) async {
   var sqlText = "select * from folders where pk = ?";
 
   // var list = await DBHelper().selectAsync(sqlText, [pk]);
@@ -30,7 +28,7 @@ Future<SKFileModel?> getFolder(String pk) async {
   // logger.d("list ${list.length}");
   //
   // if (list.isNotEmpty) {
-  //   return SKFileModel.fromJson(list[0]);
+  //   return QMFileModel.fromJson(list[0]);
   // }
 
   return null;
@@ -42,7 +40,7 @@ Future<void> updateFilesCount(String pk, int count) async {
   // await DBHelper().executeAsync(sqlText, [count, pk]);
 }
 
-Future<void> insertFolder(SKFileModel model) async {
+Future<void> insertFolder(QMFileModel model) async {
   var sqlTextInsertFolder = '''
 insert into folders(pk, path, count)
 values(?, ?, 0);

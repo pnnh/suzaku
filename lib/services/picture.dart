@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
-import 'package:suzaku/models/file.dart';
+import 'package:quantum/filesystem/file.dart';
 
 import 'package:suzaku/models/picture.dart';
 import 'package:suzaku/services/folder.dart';
@@ -10,7 +10,7 @@ import 'package:suzaku/utils/image.dart';
 
 import '../utils/random.dart';
 
-Future<List<PictureModel>> selectPictures(SKFileModel albumModel) async {
+Future<List<PictureModel>> selectPictures(QMFileModel albumModel) async {
   // var sqlText = '''select pk, header, body,
   //   simple_highlight(searches, 3, '[', ']') as highlight
   //   from searches where body match jieba_query('国');''';
@@ -43,7 +43,7 @@ bool isImageExt(String extName) {
   return exts.contains(extName);
 }
 
-Future<List<PictureModel>> selectPicturesByFolder(SKFileModel folder) async {
+Future<List<PictureModel>> selectPicturesByFolder(QMFileModel folder) async {
   if (folder.uid.isEmpty) return List.empty();
 
   var sqlText = '''select p.*, f.path path from pictures p 
@@ -79,7 +79,7 @@ values(?, ?, ?);
   commands[sqlTextInsertSearches] = [model.pk, 'picture', model.basename];
 }
 
-Future<void> scanPicturesWorker(SKFileModel folderModel) async {
+Future<void> scanPicturesWorker(QMFileModel folderModel) async {
   if (folderModel.path.trim().isEmpty || folderModel.uid.trim().isEmpty) {
     return;
   }
