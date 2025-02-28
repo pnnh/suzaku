@@ -19,11 +19,7 @@ class SKGlobalLocationNavigator {
 
   SKLocationModel initialLocation(String path) {
     initPath = path;
-    var resolvedPath = Quantum.resolvePath(path);
-    if (resolvedPath == null) {
-      throw Exception("目录解析异常");
-    }
-    realPath = resolvedPath;
+    realPath = path;
     var newLoc = SKLocationModel.fromPath(path);
     currentLocationIndex = 0;
     newLoc.isRoot = true;

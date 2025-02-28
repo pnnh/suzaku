@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:quantum/quantum.dart';
 import 'package:quantum/utils/md5.dart';
+import 'package:quantum/filesystem/path.dart';
 
 class SKNoteModel {
   String uid = "";
@@ -24,7 +24,7 @@ class SKNoteModel {
 
 Future<List<SKNoteModel>> selectNotes(String filePath) async {
   var noteList = List<SKNoteModel>.empty(growable: true);
-  var realPath = Quantum.resolvePath(filePath);
+  var realPath = await resolvePath(filePath);
   if (realPath == null) {
     return noteList;
   }
@@ -50,7 +50,7 @@ Future<List<SKNoteModel>> selectNotes(String filePath) async {
 }
 
 Future<SKNoteModel> mustQueryNote(String filePath) async {
-  var realPath = Quantum.resolvePath(filePath);
+  var realPath = await resolvePath(filePath);
   if (realPath == null) {
     throw Exception("目录解析异常");
   }

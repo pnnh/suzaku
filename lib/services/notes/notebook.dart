@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:quantum/quantum.dart';
 import 'package:quantum/utils/md5.dart';
+import 'package:quantum/filesystem/path.dart';
 
 class SKNotebookModel {
   String uid = "";
@@ -23,7 +24,7 @@ class SKNotebookModel {
 
 Future<List<SKNotebookModel>> selectNotebooks(String filePath) async {
   var notebookList = List<SKNotebookModel>.empty(growable: true);
-  var realPath = Quantum.resolvePath(filePath);
+  var realPath = await resolvePath(filePath);
   if (realPath == null) {
     return notebookList;
   }
