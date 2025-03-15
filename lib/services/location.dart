@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:quantum/database/database.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -63,7 +62,7 @@ on conflict(uid) do update set show_path = excluded.show_path, real_path = exclu
     var sqlText = '''select * from locations;''';
 
     var client = await connectMainDatabase();
-    var list = await client.selectAsync(sqlText);
+    var list = await client.executeAsync(sqlText);
 
     debugPrint("list ${list.length}");
 
