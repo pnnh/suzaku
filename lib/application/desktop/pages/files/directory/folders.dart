@@ -1,14 +1,15 @@
 import 'dart:math';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:path/path.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:path/path.dart';
 import 'package:quantum/filesystem/file.dart';
-import 'package:quantum/quantum.dart' as quantum;
+import 'package:quantum/utils/logger.dart';
 import 'package:suzaku/application/desktop/pages/files/state.dart';
+import 'package:suzaku/services/folder.dart';
 import 'package:suzaku/services/location.dart';
-import 'package:suzaku/utils/logger.dart';
 
 class DFoldersBody extends StatelessWidget {
   const DFoldersBody({super.key});

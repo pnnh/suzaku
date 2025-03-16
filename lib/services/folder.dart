@@ -1,6 +1,5 @@
 import 'package:quantum/filesystem/file.dart';
-
-import '../utils/random.dart';
+import 'package:quantum/utils/random.dart';
 
 class Folders {
   static Future<QMFileModel?> pickFolder() async {

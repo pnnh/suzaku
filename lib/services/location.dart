@@ -44,14 +44,17 @@ class SKLocationModel {
   static Future<void> insertFolder(SKLocationModel model) async {
     var sqlTextInsertFolder = '''
 insert into locations(uid, name, show_path, real_path)
-values(?, ?, ?, ?)
+values(:uid, :showPath, :showPath, :realPath)
 on conflict(uid) do update set show_path = excluded.show_path, real_path = excluded.real_path;
 ''';
     var uuid = const Uuid();
     var uid = uuid.v4();
     var client = await connectMainDatabase();
-    await client.executeAsync(sqlTextInsertFolder,
-        [model.uid, model.showPath, model.showPath, model.realPath]);
+    await client.executeAsync(sqlTextInsertFolder, parameters: {
+      ":uid": uid,
+      ":showPath": model.showPath,
+      ":realPath": model.realPath
+    });
   }
 
   static Future<List<SKLocationModel>> selectLocations() async {

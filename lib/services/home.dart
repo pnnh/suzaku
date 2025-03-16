@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:quantum/utils/logger.dart';
 import 'package:suzaku/config.dart';
 import 'package:suzaku/models/home.dart';
-import 'package:suzaku/utils/logger.dart';
 
 Future<HomeResult> queryHome() async {
   var url = Uri.parse('${AppConfig.serverUrl}/articles');

@@ -10,9 +10,10 @@ create table if not exists main.locations
     real_path text not null
 );
 ''';
-  var mainDb = await QMSqliteClient.connect("suzaku/main.db", initSql: initSql);
+  var mainDb = await QMSqliteClient.connect("suzaku/main.db");
   if (mainDb == null) {
     throw Exception("数据库连接失败");
   }
+  await mainDb.executeAsync(initSql);
   return mainDb;
 }

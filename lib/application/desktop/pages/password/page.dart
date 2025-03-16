@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quantum/utils/random.dart';
 import 'package:suzaku/application/desktop/components/navbar.dart';
-import 'package:suzaku/utils/random.dart';
 
 class DPasswordPage extends ConsumerStatefulWidget {
   const DPasswordPage({super.key});

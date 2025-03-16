@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
+import 'package:quantum/utils/logger.dart';
 import 'package:suzaku/services/notes/notebook.dart';
-import 'package:suzaku/utils/logger.dart';
 
 import 'library_view.dart';
 

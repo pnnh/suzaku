@@ -1,14 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:async';
-
-import 'package:suzaku/application/desktop/pages/files/directory/folders.dart';
+import 'package:quantum/utils/logger.dart';
 import 'package:suzaku/models/picture.dart';
 import 'package:suzaku/services/image/image.dart';
 import 'package:suzaku/services/picture.dart';
-import 'package:suzaku/utils/logger.dart';
 
 class MHomePage extends ConsumerStatefulWidget {
   const MHomePage({super.key});
