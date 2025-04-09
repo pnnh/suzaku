@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:suzaku/application/desktop/components/navbar.dart';
 
 import 'action.dart';
 import 'export.dart';
@@ -24,7 +23,6 @@ class _DPasswordPageState extends ConsumerState<WSvgPage> {
       color: Colors.white,
       child: Column(
         children: [
-          DNavbarComponent(),
           Expanded(
               child: Container(
             color: Colors.white,

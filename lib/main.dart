@@ -1,11 +1,14 @@
-import 'package:suzaku/application/application.dart' as application;
+// import 'package:suzaku/application/application.dart' as application;
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'application/application.dart'
+    if (dart.library.html) 'application/application_web.dart'
+    if (dart.library.io) 'application/application_native.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- 
-  var app = await application.initApp();
 
-  runApp(ProviderScope(child: app));
+  var app = await initApp();
+
+  runApp(app);
 }

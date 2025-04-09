@@ -1,6 +1,16 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 
 import 'route.dart';
+
+Future<Widget> initApp() async {
+  if (Platform.isAndroid || Platform.isIOS) {
+    return const MobileApplication();
+  }
+
+  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+}
 
 class MobileApplication extends StatefulWidget {
   const MobileApplication({super.key});

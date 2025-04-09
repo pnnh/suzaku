@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quantum/utils/random.dart';
-import 'package:suzaku/application/desktop/components/navbar.dart';
 
 class WUUIDPage extends ConsumerStatefulWidget {
   const WUUIDPage({super.key});
@@ -30,7 +29,6 @@ class _DPasswordPageState extends ConsumerState<WUUIDPage> {
       color: Colors.white,
       child: Column(
         children: [
-          DNavbarComponent(),
           Expanded(
               child: Container(
             color: Colors.white,

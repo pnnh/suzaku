@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:suzaku/application/web/pages/password/page.dart';
 import 'package:suzaku/application/web/pages/svg/page.dart';
-import 'pages/password/page.dart';
-import 'pages/uuid/page.dart';
+import 'package:suzaku/application/web/pages/uuid/page.dart';
 
 import 'home.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 
 import 'route.dart';
 import 'theme.dart';
@@ -13,7 +14,8 @@ class WebApplication extends StatefulWidget {
 class _WebApplicationState extends State<WebApplication> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return ProviderScope(
+        child: MaterialApp.router(
       title: '希波万象',
       routerConfig: webRouter,
       debugShowCheckedModeBanner: false,
@@ -35,6 +37,6 @@ class _WebApplicationState extends State<WebApplication> {
           scaffoldBackgroundColor: Colors.black,
           iconTheme: const IconThemeData(size: 24)),
       color: Colors.white,
-    );
+    ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 
 import 'route.dart';
 import 'theme.dart';
@@ -7,13 +8,14 @@ class DesktopApplication extends StatefulWidget {
   const DesktopApplication({super.key});
 
   @override
-  State<DesktopApplication> createState() => _DesktopApplicationState();
+  State<DesktopApplication> createState() => _SZAppState();
 }
 
-class _DesktopApplicationState extends State<DesktopApplication> {
+class _SZAppState extends State<DesktopApplication> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return ProviderScope(
+        child: MaterialApp.router(
       title: '希波万象',
       routerConfig: desktopRouter,
       debugShowCheckedModeBanner: false,
@@ -41,7 +43,7 @@ class _DesktopApplicationState extends State<DesktopApplication> {
           scaffoldBackgroundColor: Colors.black,
           iconTheme: const IconThemeData(size: 24)),
       color: Colors.white,
-    );
+    ));
   }
 }
 
