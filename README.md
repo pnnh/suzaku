@@ -19,8 +19,17 @@ flutter pub run build_runner build --delete-conflicting-outputs
 dart run build_runner build  --delete-conflicting-outputs 
 ```
 
-### web运行注意
+### web运行
 
 ```bash
 flutter run -d chrome --web-hostname=127.0.0.1 --web-port=3500
+# 构建web
+flutter build web --pwa-strategy=none
+```
+
+### 构建Server Docker镜像
+
+```bash
+# 构建docker镜像
+docker build --progress=plain -t suzaku .
 ```
