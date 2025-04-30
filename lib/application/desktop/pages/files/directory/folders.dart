@@ -35,7 +35,7 @@ class _FoldersBodyState extends ConsumerWidget {
               height: max(512, constraints.maxHeight), width: 256),
           child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xffEDEBEA),
                 border: Border(
                   right: BorderSide(
                     color: Colors.grey.withOpacity(0.1),

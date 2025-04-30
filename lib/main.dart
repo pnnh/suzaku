@@ -1,4 +1,3 @@
-// import 'package:suzaku/application/application.dart' as application;
 import 'package:flutter/material.dart';
 
 import 'application/application.dart'

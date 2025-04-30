@@ -13,13 +13,13 @@ final GoRouter desktopRouter = GoRouter(
     GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const DFilesPage();
+          return const DToolsPage();
         },
         routes: <RouteBase>[
           GoRoute(
-            path: 'tools',
+            path: 'files',
             builder: (BuildContext context, GoRouterState state) {
-              return DToolsPage();
+              return DFilesPage();
             },
           ),
           GoRoute(

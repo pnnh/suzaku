@@ -23,41 +23,43 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   http: ^1.3.0
-  provider: ^6.1.2
-  path: ^1.9.0
+  provider: ^6.1.5
+  path: ^1.9.1
   hive_flutter: ^1.1.0
-  flutter_svg: ^2.0.17
+  flutter_svg: ^2.1.0
   uuid: ^4.5.1
-  syncfusion_flutter_datepicker: ^28.2.5
-  syncfusion_flutter_calendar: ^28.2.5
+  syncfusion_flutter_datepicker: ^29.1.40
+  syncfusion_flutter_calendar: ^29.1.40
   validators: ^3.0.0
   split_view: ^3.2.1
   riverpod: ^2.6.1
   flutter_riverpod: ^2.6.1
-  material_symbols_icons: ^4.2805.1
+  material_symbols_icons: ^4.2815.0
   flutter_screenutil: ^5.9.3
   riverpod_annotation: ^2.6.1
-  freezed_annotation: ^2.4.4
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   flutter_staggered_grid_view: ^0.7.0
   multi_split_view: ^3.6.0
   markdown: ^7.3.0
   flutter_highlight: ^0.7.0
-  markdown_widget: ^2.3.2+6
+  markdown_widget: ^2.3.2+8
   loading_indicator: ^3.1.1
-  go_router: ^14.8.0
+  go_router: ^15.1.1
   logger: ^2.5.0
   image_picker: ^1.1.2
   path_provider: ^2.1.5
   assorted_layout_widgets: ^11.0.0
   quantum:
     path: plugins/quantum
+  bitsdojo_window:
+    path: plugins/bitsdojo_window/bitsdojo_window
 
 dev_dependencies:
   flutter_lints:
-  json_serializable: ^6.9.4
+  json_serializable: ^6.9.5
   build_runner:
-  riverpod_generator: ^2.6.4
+  riverpod_generator: ^2.6.5
   flutter_test:
     sdk: flutter
-  freezed: ^2.5.8
+  freezed: ^3.0.6

@@ -15,10 +15,10 @@ class DNavbarComponent extends ConsumerWidget {
       return Container();
     }
     return Container(
-      height: 32,
+      height: 36,
       padding: const EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xffEDEEF0),
         border: Border(
           bottom: BorderSide(
             color: Colors.grey.withOpacity(0.5),
