@@ -52,8 +52,6 @@ dependencies:
   assorted_layout_widgets: ^11.0.0
   quantum:
     path: plugins/quantum
-  bitsdojo_window:
-    path: plugins/bitsdojo_window/bitsdojo_window
 
 dev_dependencies:
   flutter_lints:

@@ -49,41 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.12.0"
-  bitsdojo_window:
-    dependency: "direct main"
-    description:
-      path: "plugins/bitsdojo_window/bitsdojo_window"
-      relative: true
-    source: path
-    version: "0.1.6"
-  bitsdojo_window_linux:
-    dependency: transitive
-    description:
-      path: "plugins/bitsdojo_window/bitsdojo_window_linux"
-      relative: true
-    source: path
-    version: "0.1.4"
-  bitsdojo_window_macos:
-    dependency: transitive
-    description:
-      path: "plugins/bitsdojo_window/bitsdojo_window_macos"
-      relative: true
-    source: path
-    version: "0.1.4"
-  bitsdojo_window_platform_interface:
-    dependency: transitive
-    description:
-      path: "plugins/bitsdojo_window/bitsdojo_window_platform_interface"
-      relative: true
-    source: path
-    version: "0.1.2"
-  bitsdojo_window_windows:
-    dependency: transitive
-    description:
-      path: "plugins/bitsdojo_window/bitsdojo_window_windows"
-      relative: true
-    source: path
-    version: "0.1.6"
   boolean_selector:
     dependency: transitive
     description:

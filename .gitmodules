@@ -5,6 +5,3 @@
 [submodule "server/src/atom"]
 	path = server/src/atom
 	url = git@github.com:pnnh/atom.git
-[submodule "plugins/bitsdojo_window"]
-	path = plugins/bitsdojo_window
-	url = git@github.com:pnnh/bitsdojo_window.git

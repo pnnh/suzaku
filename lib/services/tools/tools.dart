@@ -7,7 +7,7 @@ List<ToolModel> selectTools() {
     name: 'File Tool',
   );
   fileTool.cover = "static/images/common/tools/files.png";
-  fileTool.route = "/"; // 默认是文件管理页面
+  fileTool.route = "/files";
   list.add(fileTool);
 
   var passwordTool = ToolModel(
@@ -34,13 +34,13 @@ List<ToolModel> selectTools() {
   uuidTool.route = "/uuid";
   list.add(uuidTool);
 
-  var imageTool = ToolModel(
-    urn: 'f1b1b3b4-1b1b-3b1b-4b1b-5b1b6b1b7b1b8',
-    name: 'Image Tool',
-  );
-  imageTool.cover = "static/images/common/tools/images.png";
-  imageTool.route = "/images";
-  list.add(imageTool);
+  // var imageTool = ToolModel(
+  //   urn: 'f1b1b3b4-1b1b-3b1b-4b1b-5b1b6b1b7b1b8',
+  //   name: 'Image Tool',
+  // );
+  // imageTool.cover = "static/images/common/tools/images.png";
+  // imageTool.route = "/images";
+  // list.add(imageTool);
 
   return list;
 }
