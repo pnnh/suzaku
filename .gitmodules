@@ -2,6 +2,3 @@
 	path = plugins/quantum
 	url = git@github.com:pnnh/quantum.git
 	branch = main
-[submodule "server/src/atom"]
-	path = server/src/atom
-	url = git@github.com:pnnh/atom.git
