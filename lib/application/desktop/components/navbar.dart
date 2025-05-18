@@ -36,7 +36,7 @@ class DNavbarComponent extends ConsumerWidget {
             height: 24,
             child: GestureDetector(
               onTap: () {
-                context.go("/tools");
+                context.go("/");
               },
               child: Icon(
                 Symbols.globe,
